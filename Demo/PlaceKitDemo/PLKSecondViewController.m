@@ -7,6 +7,7 @@
 //
 
 #import "PLKSecondViewController.h"
+#import "PlaceKit.h"
 
 @interface PLKSecondViewController ()
 
@@ -28,6 +29,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    [PlaceKit placeTextWithNumberOfParagraphs:3
+                                     ofLength:PLKTextParagraphLengthVeryShort
+                                      options:PLKTextOptionsAllCaps
+                                   completion:^(NSString *placeText) {
+                                       NSLog(@"placeholder text: %@", placeText);
+                                   }];
 }
 
 - (void)didReceiveMemoryWarning

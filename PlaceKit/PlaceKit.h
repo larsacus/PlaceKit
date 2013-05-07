@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger, PLKTextParagraphLength){
-    PLKTextParagraphLengthShort = 0,
+    PLKTextParagraphLengthVeryShort = 0,
+    PLKTextParagraphLengthShort,
     PLKTextParagraphLengthMedium,
     PLKTextParagraphLengthLong,
     PLKTextParagraphLengthVeryLong,
@@ -19,11 +20,8 @@ typedef NS_ENUM(NSInteger, PLKTextParagraphLength){
  */
 typedef NS_OPTIONS(NSInteger, PLKTextOptions){
     PLKTextOptionsNone = 0,
-    PLKTextOptionsUnorderedList = 1 << 0,
-    PLKTextOptionsOrderedList = 1 << 1,
-    PLKTextOptionsBlockQuotes = 1 << 2,
-    PLKTextOptionsCodeSamples = 1 << 3,
-    PLKTextOptionsPrude = 1 << 4,
+    PLKTextOptionsAllCaps = 1 << 0,
+    PLKTextOptionsPrude = 1 << 1,
 };
 
 extern NSString * const kPLKPlaceKittenImageURLString;
@@ -62,24 +60,36 @@ extern NSString * const kPLKPlaceRandomGreyscaleImageURLString;
  */
 //loripsum.net
 + (void)placeTextWithNumberOfParagraphs:(NSInteger)numberOfParagraphs
+                               ofLength:(PLKTextParagraphLength)paragraphLength
                                 options:(PLKTextOptions)options
                              completion:(void(^)(NSString *placeText))completionBlock;
 
 /** Placeholder data
  */
-//Random person name
+/** Random names
+ */
 + (NSString *)placeRandomFirstName;
 + (NSString *)placeRandomLastName;
 + (NSString *)placeRandomFullName;
 
-//Random business name
+/** Random business name
+ */
 + (NSString *)placeRandomBusinessNameWithNumberOfWords:(NSUInteger)words;
 
-//Random numbers
+/** Random numbers
+ */
 + (NSString *)placeRandomPhoneNumber;
-+ (NSInteger)placeRandomInteger;
-+ (CGFloat)placeRandomFloat;
++ (NSInteger)placeRandomIntegerLessThan:(NSInteger)lessThan;
++ (CGFloat)placeRandomFloatLessThan:(NSInteger)lessThan;
 + (CGFloat)placeRandomFloatInRange:(NSRange)range;
 + (CGFloat)placeRandomPercentage;
+
+/** Geometry
+ */
++ (CGSize)placeRandomSizeWithDimensionInRange:(NSRange)dimensionRange;
++ (CGSize)placeRandomSizeWithXRange:(NSRange)xDimensionRange
+                             yRange:(NSRange)yDimensionRange;
++ (CGRect)placeRandomRectWithinRect:(CGRect)rect;
++ (CGPoint)placeRandomPointWithinRect:(CGRect)rect;
 
 @end

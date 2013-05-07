@@ -37,7 +37,7 @@
 #pragma mark - CollectionView Data Source
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section{
-    return 100;
+    return [PlaceKit placeRandomFloatInRange:NSMakeRange(35.f, 300.f)];
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
@@ -54,66 +54,35 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat maxDimension = 100.f;
-    CGFloat minDimension = 25.f;
-    CGFloat width = round(minDimension+arc4random_uniform(maxDimension-minDimension));
-    CGFloat height = round(minDimension+arc4random_uniform(maxDimension-minDimension));
-    CGSize size = CGSizeMake(width, height);
-    
-    return size;
+    return [PlaceKit placeRandomSizeWithDimensionInRange:NSMakeRange(45.f, 130.f)];
 }
 
 - (void)randomPlaceholderImageForCell:(PLKCollectionViewImageCell *)cell{
     NSInteger random = arc4random_uniform(6);
     switch (random) {
         case 0:{
-//            [PlaceKit placeKittenImageWithSize:cell.bounds.size
-//                                    completion:^(UIImage *kittenImage) {
-//                                        cell.imageView.image = kittenImage;
-//                                    }];
-            [cell.imageView placeKittenImage];
+            [cell.imageView placeKittenImageWithSize:cell.bounds.size];
         }
             break;
         case 1:{
-//            [PlaceKit placeHolderImageWithSize:cell.bounds.size
-//                                    completion:^(UIImage *kittenImage) {
-//                                        cell.imageView.image = kittenImage;
-//                                    }];
-            [cell.imageView placeHolderImage];
+            [cell.imageView placeHolderImageWithSize:cell.bounds.size];
         }
             break;
         case 2:{
-//            [PlaceKit placeBaconImageWithSize:cell.bounds.size
-//                                    completion:^(UIImage *kittenImage) {
-//                                        cell.imageView.image = kittenImage;
-//                                    }];
-            [cell.imageView placeBaconImage];
+            [cell.imageView placeBaconImageWithSize:cell.bounds.size];
         }
             break;
         case 3:{
-//            [PlaceKit placeRandomGreyscaleImageWithSize:cell.bounds.size
-//                                             completion:^(UIImage *randomImage) {
-//                                                 cell.imageView.image = randomImage;
-//                                             }];
-            [cell.imageView placeRandomGreyscaleImage];
+            [cell.imageView placeRandomGreyscaleImageWithSize:cell.bounds.size];
         }
             break;
         case 4:{
-//            [PlaceKit placeRandomImageWithSize:cell.bounds.size
-//                                    completion:^(UIImage *randomImage) {
-//                                        cell.imageView.image = randomImage;
-//                                    }];
-            [cell.imageView placeRandomImage];
+            [cell.imageView placeRandomImageWithSize:cell.bounds.size];
         }
             break;
         case 5:
         default:{
-//            [PlaceKit placeRandomGreyscaleImageWithSize:cell.bounds.size
-//                                               category:@"sports"
-//                                             completion:^(UIImage *randomImage) {
-//                                                 cell.imageView.image = randomImage;
-//                                             }];
-            [cell.imageView placeRandomGreyscaleImageFromCategory:@"sports"];
+            [cell.imageView placeRandomGreyscaleImageWithSize:cell.bounds.size category:@"sports"];
         }
             break;
     }
