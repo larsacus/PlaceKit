@@ -71,7 +71,7 @@
 //                                    completion:^(UIImage *kittenImage) {
 //                                        cell.imageView.image = kittenImage;
 //                                    }];
-            [cell.imageView placeKittenImageWithSize:cell.bounds.size];
+            [cell.imageView placeKittenImage];
         }
             break;
         case 1:{
@@ -79,7 +79,7 @@
 //                                    completion:^(UIImage *kittenImage) {
 //                                        cell.imageView.image = kittenImage;
 //                                    }];
-            [cell.imageView placeHolderImageWithSize:cell.bounds.size];
+            [cell.imageView placeHolderImage];
         }
             break;
         case 2:{
@@ -87,7 +87,7 @@
 //                                    completion:^(UIImage *kittenImage) {
 //                                        cell.imageView.image = kittenImage;
 //                                    }];
-            [cell.imageView placeBaconImageWithSize:cell.bounds.size];
+            [cell.imageView placeBaconImage];
         }
             break;
         case 3:{
@@ -95,7 +95,7 @@
 //                                             completion:^(UIImage *randomImage) {
 //                                                 cell.imageView.image = randomImage;
 //                                             }];
-            [cell.imageView placeRandomGreyscaleImageWithSize:cell.bounds.size];
+            [cell.imageView placeRandomGreyscaleImage];
         }
             break;
         case 4:{
@@ -103,7 +103,7 @@
 //                                    completion:^(UIImage *randomImage) {
 //                                        cell.imageView.image = randomImage;
 //                                    }];
-            [cell.imageView placeRandomImageWithSize:cell.bounds.size];
+            [cell.imageView placeRandomImage];
         }
             break;
         case 5:
@@ -113,7 +113,7 @@
 //                                             completion:^(UIImage *randomImage) {
 //                                                 cell.imageView.image = randomImage;
 //                                             }];
-            [cell.imageView placeRandomGreyscaleImageWithSize:cell.bounds.size category:@"sports"];
+            [cell.imageView placeRandomGreyscaleImageFromCategory:@"sports"];
         }
             break;
     }

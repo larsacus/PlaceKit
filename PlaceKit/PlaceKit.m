@@ -10,12 +10,12 @@
 
 #import "AFNetworking.h"
 
-NSString * const kPLKPlaceKittenURLString = @"http://placekitten.com/%1.0f/%1.0f";
-NSString * const kPLKPlaceKittenGreyscaleURLString = @"http://placekitten.com/g/%1.0f/%1.0f";
-NSString * const kPLKPlaceBaconURLString = @"http://baconmockup.com/%1.0f/%1.0f";
-NSString * const kPLKPlaceHolderURLString = @"http://placehold.it/%1.0fx%1.0f";
-NSString * const kPLKPlaceRandomURLString = @"http://lorempixel.com/%1.0f/%1.0f";
-NSString * const kPLKPlaceRandomGreyscaleURLString = @"http://lorempixel.com/%1.0f/%1.0f";
+NSString * const kPLKPlaceKittenImageURLString = @"http://placekitten.com/%1.0f/%1.0f";
+NSString * const kPLKPlaceKittenGreyscaleImageURLString = @"http://placekitten.com/g/%1.0f/%1.0f";
+NSString * const kPLKPlaceBaconImageURLString = @"http://baconmockup.com/%1.0f/%1.0f";
+NSString * const kPLKPlaceHolderImageURLString = @"http://placehold.it/%1.0fx%1.0f";
+NSString * const kPLKPlaceRandomImageURLString = @"http://lorempixel.com/%1.0f/%1.0f";
+NSString * const kPLKPlaceRandomGreyscaleImageURLString = @"http://lorempixel.com/%1.0f/%1.0f";
 
 @implementation PlaceKit
 
@@ -33,28 +33,28 @@ NSString * const kPLKPlaceRandomGreyscaleURLString = @"http://lorempixel.com/%1.
 #pragma mark - Images
 + (void)placeKittenImageWithSize:(CGSize)size
                       completion:(void(^)(UIImage *kittenImage))completionBlock{
-    [self requestImageWithPath:kPLKPlaceKittenURLString
+    [self requestImageWithPath:kPLKPlaceKittenImageURLString
                           size:size
                     completion:completionBlock];
 }
 
 + (void)placeKittenGreyImageWithSize:(CGSize)size
                           completion:(void(^)(UIImage *greyKittenImage))completionBlock{
-    [self requestImageWithPath:kPLKPlaceKittenGreyscaleURLString
+    [self requestImageWithPath:kPLKPlaceKittenGreyscaleImageURLString
                           size:size
                     completion:completionBlock];
 }
 
 + (void)placeBaconImageWithSize:(CGSize)size
                      completion:(void(^)(UIImage *baconImage))completionBlock{
-    [self requestImageWithPath:kPLKPlaceBaconURLString
+    [self requestImageWithPath:kPLKPlaceBaconImageURLString
                           size:size
                     completion:completionBlock];
 }
 
 + (void)placeHolderImageWithSize:(CGSize)size
                       completion:(void(^)(UIImage *placeholderImage))completionBlock{
-    [self requestImageWithPath:kPLKPlaceHolderURLString
+    [self requestImageWithPath:kPLKPlaceHolderImageURLString
                           size:size
                     completion:completionBlock];
 }
@@ -69,7 +69,7 @@ NSString * const kPLKPlaceRandomGreyscaleURLString = @"http://lorempixel.com/%1.
 + (void)placeRandomImageWithSize:(CGSize)size
                         category:(NSString *)category
                       completion:(void(^)(UIImage *randomImage))completionBlock{
-    [self requestImageWithPath:[kPLKPlaceRandomURLString stringByAppendingPathComponent:category]
+    [self requestImageWithPath:[kPLKPlaceRandomImageURLString stringByAppendingPathComponent:category]
                           size:size
                     completion:completionBlock];
 }
@@ -77,21 +77,21 @@ NSString * const kPLKPlaceRandomGreyscaleURLString = @"http://lorempixel.com/%1.
 + (void)placeRandomGreyscaleImageWithSize:(CGSize)size
                                  category:(NSString *)category
                                completion:(void(^)(UIImage *randomImage))completionBlock{
-    [self requestImageWithPath:[kPLKPlaceRandomGreyscaleURLString stringByAppendingPathComponent:category]
+    [self requestImageWithPath:[kPLKPlaceRandomGreyscaleImageURLString stringByAppendingPathComponent:category]
                           size:size
                     completion:completionBlock];
 }
 
 + (void)placeRandomImageWithSize:(CGSize)size
                       completion:(void(^)(UIImage *randomImage))completionBlock{
-    [self requestImageWithPath:kPLKPlaceRandomURLString
+    [self requestImageWithPath:kPLKPlaceRandomImageURLString
                           size:size
                     completion:completionBlock];
 }
 
 + (void)placeRandomGreyscaleImageWithSize:(CGSize)size
                                completion:(void(^)(UIImage *randomImage))completionBlock{
-    [self requestImageWithPath:kPLKPlaceRandomGreyscaleURLString
+    [self requestImageWithPath:kPLKPlaceRandomGreyscaleImageURLString
                           size:size
                     completion:completionBlock];
 }

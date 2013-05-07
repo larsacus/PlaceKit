@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, PLKTextParagraphLength){
 /** See what these different options do at http://loripsum.net
  */
 typedef NS_OPTIONS(NSInteger, PLKTextOptions){
+    PLKTextOptionsNone = 0,
     PLKTextOptionsUnorderedList = 1 << 0,
     PLKTextOptionsOrderedList = 1 << 1,
     PLKTextOptionsBlockQuotes = 1 << 2,
@@ -25,12 +26,12 @@ typedef NS_OPTIONS(NSInteger, PLKTextOptions){
     PLKTextOptionsPrude = 1 << 4,
 };
 
-extern NSString * const kPLKPlaceKittenURLString;
-extern NSString * const kPLKPlaceKittenGreyscaleURLString;
-extern NSString * const kPLKPlaceBaconURLString;
-extern NSString * const kPLKPlaceHolderURLString;
-extern NSString * const kPLKPlaceRandomURLString;
-extern NSString * const kPLKPlaceRandomGreyscaleURLString;
+extern NSString * const kPLKPlaceKittenImageURLString;
+extern NSString * const kPLKPlaceKittenGreyscaleImageURLString;
+extern NSString * const kPLKPlaceBaconImageURLString;
+extern NSString * const kPLKPlaceHolderImageURLString;
+extern NSString * const kPLKPlaceRandomImageURLString;
+extern NSString * const kPLKPlaceRandomGreyscaleImageURLString;
 
 @interface PlaceKit : NSObject
 

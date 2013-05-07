@@ -20,4 +20,12 @@
 - (void)placeRandomImageWithSize:(CGSize)size;
 - (void)placeRandomGreyscaleImageWithSize:(CGSize)size;
 
+- (void)placeKittenImage;
+- (void)placeBaconImage;
+- (void)placeHolderImage;
+- (void)placeRandomImageFromCategory:(NSString *)category;
+- (void)placeRandomGreyscaleImageFromCategory:(NSString *)category;
+- (void)placeRandomImage;
+- (void)placeRandomGreyscaleImage;
+
 @end
