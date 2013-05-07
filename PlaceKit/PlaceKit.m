@@ -111,6 +111,7 @@ NSString * const kPLKPlaceRandomPlainTextURLString = @"http://loripsum.net/api/p
      }];
 }
 
+#pragma mark - Text
 + (void)placeTextWithNumberOfParagraphs:(NSInteger)numberOfParagraphs
                                ofLength:(PLKTextParagraphLength)paragraphLength
                                 options:(PLKTextOptions)options
@@ -169,6 +170,7 @@ NSString * const kPLKPlaceRandomPlainTextURLString = @"http://loripsum.net/api/p
     return paragraphLengthParameter;
 }
 
+#pragma mark - Fake Data
 + (NSString *)placeRandomFirstName{
     NSArray *seedFirstNames = [[self maleFirstNames] arrayByAddingObjectsFromArray:[self femaleFirstNames]];
     return seedFirstNames[arc4random_uniform(seedFirstNames.count)];
@@ -187,6 +189,7 @@ NSString * const kPLKPlaceRandomPlainTextURLString = @"http://loripsum.net/api/p
     
 }
 
+#pragma mark - Numbers
 + (NSString *)placeRandomPhoneNumber{
     return [NSString stringWithFormat:@"(%3.0i) %3.0i-%4.0i", arc4random_uniform(999), arc4random_uniform(999), arc4random_uniform(9999)];
 }
@@ -207,6 +210,7 @@ NSString * const kPLKPlaceRandomPlainTextURLString = @"http://loripsum.net/api/p
     return arc4random_uniform(100)/100.f;
 }
 
+#pragma mark - Geometry
 + (CGSize)placeRandomSizeWithDimensionInRange:(NSRange)dimensionRange{
     return [self placeRandomSizeWithXRange:dimensionRange
                                     yRange:dimensionRange];
@@ -247,6 +251,7 @@ NSString * const kPLKPlaceRandomPlainTextURLString = @"http://loripsum.net/api/p
     return CGPointMake(xOrigin, yOrigin);
 }
 
+#pragma mark - Names Storage
 + (NSArray *)femaleFirstNames{
     return @[@"Malinda", @"Kaye", @"Audra", @"Trudie", @"Stacee", @"Esta", @"Albertina", @"Nakia", @"Bettye", @"Remona", @"Kimberli", @"Clarinda", @"Gussie", @"Carmina", @"Alia", @"Shaquita", @"Rosalee", @"Nicki", @"Tamica", @"Tressa", @"Yvette", @"Shantae", @"Trena", @"Abbie", @"Isabella", @"Fiona", @"Alejandrina", @"Hyo", @"Marvis", @"Alexandra", @"Torri", @"Gemma", @"Kirsten", @"Gabriella", @"Norene", @"Emmie", @"Omega", @"Tobi", @"Christiana", @"Mee", @"Indira", @"Lakia", @"Loria", @"Chere", @"Jin", @"Annis", @"Brigitte", @"Leonila", @"Clorinda", @"Lanie", @"Lorilee", @"Brynn", @"Roxane", @"Tricia", @"Raye", @"Christal", @"Lita", @"Gianna", @"Ceola", @"Lorita", @"Katelynn", @"Mei", @"Latosha", @"Thalia", @"Avelina", @"Mirta", @"Celina", @"Arleen", @"Erinn", @"Trudy", @"Tula", @"Tequila", @"Viola", @"Marilou", @"Jacquelyn", @"Jani", @"Mellisa", @"Elfriede", @"Rachael", @"Isabelle", @"Debby", @"Lelia", @"Linn", @"India", @"Mable", @"Charity", @"Khalilah", @"Tawnya", @"Sherrell", @"Reva", @"Janyce", @"Synthia", @"Brittaney", @"Adena", @"Frida", @"Emerald", @"Niki", @"Tonda", @"Alia", @"Rachele"];
 }
