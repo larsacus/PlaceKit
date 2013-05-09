@@ -115,6 +115,28 @@ extern NSString * const kPLKPlaceRandomGreyscaleImageURLString;
                                 options:(PLKTextOptions)options
                              completion:(void(^)(NSString *placeText))completionBlock;
 
+//http://hipsterjesus.com/api/?paras=1&type=hipster-latin
+//http://hipsterjesus.com/api/?paras=1&type=hipster-centric
+/** Place some random text with the given parameters from [hipsteripsum.me](http://hipsteripsum.me)
+ 
+ @param numberOfParagraphs The number of paragraphs of text that you would like
+ @param shotOfLatin A shot of latin. For the nostalgia and irony
+ @param completionBlock The block that your random text will be returned in
+ */
++ (void)placeHipsterIpsumWithNumberOfParagraphs:(NSInteger)numberOfParagraphs
+                                    shotOfLatin:(BOOL)shotOfLatin
+                                     completion:(void(^)(NSString *hipsterIpsum))completionBlock;
+
+/** Place some random HTML with the given parameters from [chrisvalleskey.com/fillerama](http://chrisvalleskey.com/fillerama/)
+ 
+ @param numberOfParagraphs The number of paragraphs of text that you would like
+ @param seedCategory The category to seed the HTML from. Available options are `arresteddevelopment`, `doctorwho`, `dexter`, `futurama`, `holygrail`, `simpsons`, `starwars`, and `loremipsum`
+ @param completionBlock The block that your random text will be returned in
+ */
++ (void)placeHTMLWithNumberOfParagraphs:(NSInteger)numberOfParagraphs
+                           seedCategory:(NSString *)category
+                             completion:(void(^)(NSString *htmlString))completionBlock;
+
 //------–-------------------
 /** @name Placeholder data */
 //------–-------------------
