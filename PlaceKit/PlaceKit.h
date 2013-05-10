@@ -24,6 +24,20 @@ typedef NS_OPTIONS(NSInteger, PLKTextOptions){
     PLKTextOptionsPrude = 1 << 1,
 };
 
+typedef NS_OPTIONS(NSInteger, PLKHTMLOptions){
+    PLKHTMLOptionsNone = 0,
+    PLKHTMLOptionsEmphasisTags = 1 << 0,
+    PLKHTMLOptionsAnchorTags = 1 << 1,
+    PLKHTMLOptionsUnorderedList = 1 << 2,
+    PLKHTMLOptionsOrderedList = 1 << 3,
+    PLKHTMLOptionsDescriptionList = 1 << 4,
+    PLKHTMLOptionsBlockquotes = 1 << 5,
+    PLKHTMLOptionsCodeSamples = 1 << 6,
+    PLKHTMLOptionsHeaders = 1 << 7,
+    PLKHTMLOptionsAllCaps = 1 << 8,
+    PLKHTMLOptionsPrude = 1 << 9,
+};
+
 extern NSString * const kPLKPlaceKittenImageURLString;
 extern NSString * const kPLKPlaceKittenGreyscaleImageURLString;
 extern NSString * const kPLKPlaceBaconImageURLString;
@@ -127,15 +141,27 @@ extern NSString * const kPLKPlaceRandomGreyscaleImageURLString;
                                     shotOfLatin:(BOOL)shotOfLatin
                                      completion:(void(^)(NSString *hipsterIpsum))completionBlock;
 
-/** Place some random HTML with the given parameters from [chrisvalleskey.com/fillerama](http://chrisvalleskey.com/fillerama/)
+/** A URL to place some random html with the given parameters from loripsum.net.
  
- @param numberOfParagraphs The number of paragraphs of text that you would like
- @param seedCategory The category to seed the HTML from. Available options are `arresteddevelopment`, `doctorwho`, `dexter`, `futurama`, `holygrail`, `simpsons`, `starwars`, and `loremipsum`
- @param completionBlock The block that your random text will be returned in
+ @param numberOfParagraphs The number of paragraphs of text that you would like.
+ @param paragraphLength The requested length of each paragraph
+ @param options A bitmask of PLKHTMLOptions
+ @param completionBlock The block that your random HTML will be returned in
  */
 + (void)placeHTMLWithNumberOfParagraphs:(NSInteger)numberOfParagraphs
-                           seedCategory:(NSString *)category
-                             completion:(void(^)(NSString *htmlString))completionBlock;
+                               ofLength:(PLKTextParagraphLength)paragraphLength
+                                options:(PLKHTMLOptions)options
+                             completion:(void(^)(NSString *placeText))completionBlock;
+
+/** A URL to place some random html with the given parameters from loripsum.net.
+ 
+ @param numberOfParagraphs The number of paragraphs of text that you would like.
+ @param paragraphLength The requested length of each paragraph
+ @param options A bitmask of PLKHTMLOptions
+ */
++ (NSURL *)placeURLForHTMLWithParagraphs:(NSInteger)numberOfParagraphs
+                         paragraphLength:(PLKTextParagraphLength)paragraphLength
+                                 options:(PLKHTMLOptions)htmlOptions;
 
 //------–-------------------
 /** @name Placeholder data */

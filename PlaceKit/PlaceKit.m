@@ -16,7 +16,7 @@ NSString * const kPLKPlaceBaconImageURLString = @"http://baconmockup.com/%1.0f/%
 NSString * const kPLKPlaceHolderImageURLString = @"http://placehold.it/%1.0fx%1.0f";
 NSString * const kPLKPlaceRandomImageURLString = @"http://lorempixel.com/%1.0f/%1.0f";
 NSString * const kPLKPlaceRandomGreyscaleImageURLString = @"http://lorempixel.com/%1.0f/%1.0f";
-NSString * const kPLKPlaceRandomPlainTextURLString = @"http://loripsum.net/api/plaintext";
+NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
 
 @implementation PlaceKit
 
@@ -118,7 +118,7 @@ NSString * const kPLKPlaceRandomPlainTextURLString = @"http://loripsum.net/api/p
                              completion:(void(^)(NSString *placeText))completionBlock{
     NSAssert1(numberOfParagraphs > 0, @"Number of paragraphs is invalid (%i)", numberOfParagraphs);
     
-    NSString *urlString = kPLKPlaceRandomPlainTextURLString;
+    NSString *urlString = kPLKPlaceRandomTextURLString;
     
     if (options & PLKTextOptionsAllCaps) {
         urlString = [urlString stringByAppendingPathComponent:@"allcaps"];
@@ -129,6 +129,7 @@ NSString * const kPLKPlaceRandomPlainTextURLString = @"http://loripsum.net/api/p
     }
     
     NSString *paragraphLengthParameter = [self paragraphLengthParameterFromParagraphLength:paragraphLength];
+    urlString = [urlString stringByAppendingPathComponent:@"plaintext"];
     urlString = [urlString stringByAppendingPathComponent:paragraphLengthParameter];
     
     NSString *paragraphsArg = [NSString stringWithFormat:@"%i", numberOfParagraphs];
@@ -145,6 +146,107 @@ NSString * const kPLKPlaceRandomPlainTextURLString = @"http://loripsum.net/api/p
                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                            completionBlock(nil);
                        }];
+}
+
++ (void)placeHipsterIpsumWithNumberOfParagraphs:(NSInteger)numberOfParagraphs
+                                    shotOfLatin:(BOOL)shotOfLatin
+                                     completion:(void(^)(NSString *hipsterIpsum))completionBlock{
+    NSString *hipsterPath = @"http://hipsterjesus.com/api";
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:@(numberOfParagraphs) forKey:@"paras"];
+    
+    if (shotOfLatin) {
+        params[@"type"] = @"hipster-latin";
+    }
+    else{
+        params[@"type"] = @"hipster-centric";
+    }
+    
+    [[self httpClient]
+     getPath:hipsterPath
+     parameters:params
+     success:^(AFHTTPRequestOperation *operation, id responseObject) {
+         if (completionBlock != nil) {
+             completionBlock(responseObject);
+         }
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         if (completionBlock != nil) {
+             completionBlock(nil);
+         }
+     }];
+}
+
++ (void)placeHTMLWithNumberOfParagraphs:(NSInteger)numberOfParagraphs
+                               ofLength:(PLKTextParagraphLength)paragraphLength
+                                options:(PLKHTMLOptions)options
+                             completion:(void(^)(NSString *placeText))completionBlock{
+    NSURL *htmlURL = [self placeURLForHTMLWithParagraphs:numberOfParagraphs
+                                         paragraphLength:paragraphLength
+                                                 options:options];
+    
+    [[self httpClient]
+     getPath:htmlURL.absoluteString
+     parameters:nil
+     success:^(AFHTTPRequestOperation *operation, id responseObject) {
+         if (completionBlock != nil) {
+             completionBlock(responseObject);
+         }
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         if (completionBlock != nil) {
+             completionBlock(nil);
+         }
+     }];
+}
+
++ (NSURL *)placeURLForHTMLWithParagraphs:(NSInteger)numberOfParagraphs
+                         paragraphLength:(PLKTextParagraphLength)paragraphLength
+                                 options:(PLKHTMLOptions)htmlOptions{
+    NSString *htmlURLString = kPLKPlaceRandomTextURLString;
+    NSString *optionsString = [self htmlOptionsStringFromOptions:htmlOptions];
+    NSString *lengthString = [self paragraphLengthParameterFromParagraphLength:paragraphLength];
+    
+    htmlURLString = [htmlURLString stringByAppendingPathComponent:lengthString];
+    htmlURLString = [htmlURLString stringByAppendingPathComponent:optionsString];
+    
+    NSURL *htmlURL = [NSURL URLWithString:htmlURLString];
+    
+    return htmlURL;
+}
+
++ (NSString *)htmlOptionsStringFromOptions:(PLKHTMLOptions)options{
+    NSString *optionsString = @"";
+    
+    if (options & PLKHTMLOptionsAnchorTags) {
+        optionsString = [optionsString stringByAppendingPathComponent:@"link"];
+    }
+    if (options & PLKHTMLOptionsEmphasisTags) {
+        optionsString = [optionsString stringByAppendingPathComponent:@"decorate"];
+    }
+    if (options & PLKHTMLOptionsUnorderedList) {
+        optionsString = [optionsString stringByAppendingPathComponent:@"ul"];
+    }
+    if (options & PLKHTMLOptionsOrderedList) {
+        optionsString = [optionsString stringByAppendingPathComponent:@"ol"];
+    }
+    if (options & PLKHTMLOptionsDescriptionList) {
+        optionsString = [optionsString stringByAppendingPathComponent:@"dl"];
+    }
+    if (options & PLKHTMLOptionsBlockquotes) {
+        optionsString = [optionsString stringByAppendingPathComponent:@"bq"];
+    }
+    if (options & PLKHTMLOptionsCodeSamples) {
+        optionsString = [optionsString stringByAppendingPathComponent:@"code"];
+    }
+    if (options & PLKHTMLOptionsHeaders) {
+        optionsString = [optionsString stringByAppendingPathComponent:@"headers"];
+    }
+    if (options & PLKHTMLOptionsAllCaps) {
+        optionsString = [optionsString stringByAppendingPathComponent:@"allcaps"];
+    }
+    if (options & PLKHTMLOptionsPrude) {
+        optionsString = [optionsString stringByAppendingPathComponent:@"prude"];
+    }
+    
+    return optionsString;
 }
 
 + (NSString *)paragraphLengthParameterFromParagraphLength:(PLKTextParagraphLength)paragraphLength
@@ -172,8 +274,11 @@ NSString * const kPLKPlaceRandomPlainTextURLString = @"http://loripsum.net/api/p
 
 #pragma mark - Fake Data
 + (NSString *)placeRandomFirstName{
-    NSArray *seedFirstNames = [[self maleFirstNames] arrayByAddingObjectsFromArray:[self femaleFirstNames]];
-    return seedFirstNames[arc4random_uniform(seedFirstNames.count)];
+    static NSArray *__seedFirstNames;
+    if (__seedFirstNames == nil) {
+        __seedFirstNames = [[self maleFirstNames] arrayByAddingObjectsFromArray:[self femaleFirstNames]];
+    }
+    return __seedFirstNames[arc4random_uniform(__seedFirstNames.count)];
 }
 
 + (NSString *)placeRandomLastName{
@@ -253,14 +358,74 @@ NSString * const kPLKPlaceRandomPlainTextURLString = @"http://loripsum.net/api/p
 
 #pragma mark - Names Storage
 + (NSArray *)femaleFirstNames{
-    return @[@"Malinda", @"Kaye", @"Audra", @"Trudie", @"Stacee", @"Esta", @"Albertina", @"Nakia", @"Bettye", @"Remona", @"Kimberli", @"Clarinda", @"Gussie", @"Carmina", @"Alia", @"Shaquita", @"Rosalee", @"Nicki", @"Tamica", @"Tressa", @"Yvette", @"Shantae", @"Trena", @"Abbie", @"Isabella", @"Fiona", @"Alejandrina", @"Hyo", @"Marvis", @"Alexandra", @"Torri", @"Gemma", @"Kirsten", @"Gabriella", @"Norene", @"Emmie", @"Omega", @"Tobi", @"Christiana", @"Mee", @"Indira", @"Lakia", @"Loria", @"Chere", @"Jin", @"Annis", @"Brigitte", @"Leonila", @"Clorinda", @"Lanie", @"Lorilee", @"Brynn", @"Roxane", @"Tricia", @"Raye", @"Christal", @"Lita", @"Gianna", @"Ceola", @"Lorita", @"Katelynn", @"Mei", @"Latosha", @"Thalia", @"Avelina", @"Mirta", @"Celina", @"Arleen", @"Erinn", @"Trudy", @"Tula", @"Tequila", @"Viola", @"Marilou", @"Jacquelyn", @"Jani", @"Mellisa", @"Elfriede", @"Rachael", @"Isabelle", @"Debby", @"Lelia", @"Linn", @"India", @"Mable", @"Charity", @"Khalilah", @"Tawnya", @"Sherrell", @"Reva", @"Janyce", @"Synthia", @"Brittaney", @"Adena", @"Frida", @"Emerald", @"Niki", @"Tonda", @"Alia", @"Rachele"];
+    static NSArray *__femaleFirstNames;
+    if (__femaleFirstNames == nil) {
+        __femaleFirstNames = @[@"Malinda", @"Kaye", @"Audra", @"Trudie", @"Stacee", @"Esta", @"Albertina", @"Nakia", @"Bettye", @"Remona", @"Kimberli", @"Clarinda", @"Gussie", @"Carmina", @"Alia", @"Shaquita", @"Rosalee", @"Nicki", @"Tamica", @"Tressa", @"Yvette", @"Shantae", @"Trena", @"Abbie", @"Isabella", @"Fiona", @"Alejandrina", @"Hyo", @"Marvis", @"Alexandra", @"Torri", @"Gemma", @"Kirsten", @"Gabriella", @"Norene", @"Emmie", @"Omega", @"Tobi", @"Christiana", @"Mee", @"Indira", @"Lakia", @"Loria", @"Chere", @"Jin", @"Annis", @"Brigitte", @"Leonila", @"Clorinda", @"Lanie", @"Lorilee", @"Brynn", @"Roxane", @"Tricia", @"Raye", @"Christal", @"Lita", @"Gianna", @"Ceola", @"Lorita", @"Katelynn", @"Mei", @"Latosha", @"Thalia", @"Avelina", @"Mirta", @"Celina", @"Arleen", @"Erinn", @"Trudy", @"Tula", @"Tequila", @"Viola", @"Marilou", @"Jacquelyn", @"Jani", @"Mellisa", @"Elfriede", @"Rachael", @"Isabelle", @"Debby", @"Lelia", @"Linn", @"India", @"Mable", @"Charity", @"Khalilah", @"Tawnya", @"Sherrell", @"Reva", @"Janyce", @"Synthia", @"Brittaney", @"Adena", @"Frida", @"Emerald", @"Niki", @"Tonda", @"Alia", @"Rachele"];
+    }
+    return __femaleFirstNames;
 }
 
 + (NSArray *)maleFirstNames{
-    return @[@"Phillip", @"Gene", @"Trenton", @"Darwin", @"Darrin", @"Herman", @"Cody", @"Maximo", @"Gabriel", @"Noble", @"Adan", @"Dale", @"Ali", @"Laurence", @"Paris", @"Orval", @"Randy", @"Ed", @"Alonzo", @"Margarito", @"Leonard", @"Houston", @"Zackary", @"Darnell", @"Whitney", @"Samuel", @"Claud", @"Derick", @"Teddy", @"Rigoberto", @"Leonardo", @"Clay", @"Lyman", @"Solomon", @"Lloyd", @"Renaldo", @"Warner", @"Forest", @"Ty", @"Maynard", @"August", @"Charlie", @"Dewayne", @"Leopoldo", @"Wesley", @"Jerrod", @"Sylvester", @"Everette", @"Reginald", @"Omar", @"Winston", @"Quintin", @"Fredric", @"Rickey", @"Delmar", @"Raymon", @"Randy", @"Sherman", @"Lawerence", @"Lamont", @"Les", @"Nickolas", @"Guadalupe", @"Rodger", @"Armand", @"Edmundo", @"Booker", @"Van", @"Cristopher", @"Homer", @"Forest", @"Seymour", @"Frederic", @"Renaldo", @"Robt", @"Merlin", @"Leo", @"Garret", @"Fabian", @"Leon", @"Devon", @"Adam", @"Edward", @"Timmy", @"Rueben", @"Rafael", @"Felix", @"Tommy", @"Vince", @"Merle", @"Darrin", @"Bryan", @"Patrick", @"Waldo", @"Nathan", @"Coy", @"Luis", @"Reuben", @"Brendon", @"Lyman"];
+    static NSArray *__maleFirstNames;
+    if (__maleFirstNames == nil) {
+        __maleFirstNames = @[@"Phillip", @"Gene", @"Trenton", @"Darwin", @"Darrin", @"Herman", @"Cody", @"Maximo", @"Gabriel", @"Noble", @"Adan", @"Dale", @"Ali", @"Laurence", @"Paris", @"Orval", @"Randy", @"Ed", @"Alonzo", @"Margarito", @"Leonard", @"Houston", @"Zackary", @"Darnell", @"Whitney", @"Samuel", @"Claud", @"Derick", @"Teddy", @"Rigoberto", @"Leonardo", @"Clay", @"Lyman", @"Solomon", @"Lloyd", @"Renaldo", @"Warner", @"Forest", @"Ty", @"Maynard", @"August", @"Charlie", @"Dewayne", @"Leopoldo", @"Wesley", @"Jerrod", @"Sylvester", @"Everette", @"Reginald", @"Omar", @"Winston", @"Quintin", @"Fredric", @"Rickey", @"Delmar", @"Raymon", @"Randy", @"Sherman", @"Lawerence", @"Lamont", @"Les", @"Nickolas", @"Guadalupe", @"Rodger", @"Armand", @"Edmundo", @"Booker", @"Van", @"Cristopher", @"Homer", @"Forest", @"Seymour", @"Frederic", @"Renaldo", @"Robt", @"Merlin", @"Leo", @"Garret", @"Fabian", @"Leon", @"Devon", @"Adam", @"Edward", @"Timmy", @"Rueben", @"Rafael", @"Felix", @"Tommy", @"Vince", @"Merle", @"Darrin", @"Bryan", @"Patrick", @"Waldo", @"Nathan", @"Coy", @"Luis", @"Reuben", @"Brendon", @"Lyman"];
+    }
+    return __maleFirstNames;
 }
 
 + (NSArray *)lastNames{
-    return @[@"Mclawhorn", @"Lyvers", @"Deborde", @"Scarberry", @"Swearingen", @"Mccampbell", @"Strum", @"Banuelos", @"Parrish", @"Bueno", @"Wegener", @"Vieira", @"Plantz", @"Mcquaid", @"Bruckner", @"Orchard", @"Wall", @"Gerth", @"Schweiger", @"Minder", @"Correa", @"Cremer", @"Close", @"Zink", @"Victorian", @"Bickle", @"Vanorden", @"Lauro", @"Whitsitt", @"Dubose", @"Nowell", @"Holtzman", @"Harkleroad", @"Gardella", @"Shepard", @"Hudon", @"Bicknell", @"Flippin", @"Winzer", @"Meints", @"Merlino", @"Sikes", @"Segrest", @"Keefe", @"Botkin", @"Geissler", @"Revilla", @"Saenger", @"Steves", @"Mulherin", @"Angelos", @"Chica", @"Lapointe", @"Hutt", @"Kushner", @"Steiger", @"Gutowski", @"Mclain", @"Klutts", @"Vanfleet", @"Kirchoff", @"Stanfield", @"Mccomas", @"Saeger", @"Bashaw", @"Duncanson", @"Lussier", @"Glade", @"Mcmullin", @"Chmielewski", @"Vang", @"Klemme", @"Downs", @"Feagin", @"Alanis", @"Gartrell", @"Shippee", @"Fred", @"Lenhardt", @"Ferron", @"Hollaway", @"Felker", @"Irey", @"Gildersleeve", @"Arnwine", @"Stair", @"Wolski", @"Langan", @"Hirschman", @"Bisignano", @"Bull", @"Godbee", @"Outland", @"Choe", @"Bartsch", @"Bialek", @"Plumb", @"Rochell", @"Organ", @"Synder"];
+    static NSArray *__lastNames;
+    if (__lastNames == nil) {
+        __lastNames = @[@"Mclawhorn", @"Lyvers", @"Deborde", @"Scarberry", @"Swearingen", @"Mccampbell", @"Strum", @"Banuelos", @"Parrish", @"Bueno", @"Wegener", @"Vieira", @"Plantz", @"Mcquaid", @"Bruckner", @"Orchard", @"Wall", @"Gerth", @"Schweiger", @"Minder", @"Correa", @"Cremer", @"Close", @"Zink", @"Victorian", @"Bickle", @"Vanorden", @"Lauro", @"Whitsitt", @"Dubose", @"Nowell", @"Holtzman", @"Harkleroad", @"Gardella", @"Shepard", @"Hudon", @"Bicknell", @"Flippin", @"Winzer", @"Meints", @"Merlino", @"Sikes", @"Segrest", @"Keefe", @"Botkin", @"Geissler", @"Revilla", @"Saenger", @"Steves", @"Mulherin", @"Angelos", @"Chica", @"Lapointe", @"Hutt", @"Kushner", @"Steiger", @"Gutowski", @"Mclain", @"Klutts", @"Vanfleet", @"Kirchoff", @"Stanfield", @"Mccomas", @"Saeger", @"Bashaw", @"Duncanson", @"Lussier", @"Glade", @"Mcmullin", @"Chmielewski", @"Vang", @"Klemme", @"Downs", @"Feagin", @"Alanis", @"Gartrell", @"Shippee", @"Fred", @"Lenhardt", @"Ferron", @"Hollaway", @"Felker", @"Irey", @"Gildersleeve", @"Arnwine", @"Stair", @"Wolski", @"Langan", @"Hirschman", @"Bisignano", @"Bull", @"Godbee", @"Outland", @"Choe", @"Bartsch", @"Bialek", @"Plumb", @"Rochell", @"Organ", @"Synder"];
+    }
+    return __lastNames;
+}
+
++ (NSArray *)businessNameSingleWordPrefix{
+    static NSArray *__businessNameSingleWordPrefix;
+    if (__businessNameSingleWordPrefix == nil) {
+        __businessNameSingleWordPrefix = @[@"Micro", @"Star", @"Wal", @"Du", @"Goo", @"Citi", @"Cono", @"Kro", @"Proc", @"Boe", @"Com", @"Sys", @"Super", @"Aet", @"All", @"Nation"];
+    }
+    return __businessNameSingleWordPrefix;
+}
+
++ (NSArray *)businessNameSingleWordSuffix{
+    static NSArray *__businessNameSingleWordSuffix;
+    if (__businessNameSingleWordSuffix == nil) {
+        __businessNameSingleWordSuffix = @[@"get", @"bucks", @"pont", @"gle", @"co", @"ger", @"ter", @"thon", @"soft", @"get", @"ing", @"cast", @"a", @"well", @"na", @"state"];
+    }
+    return __businessNameSingleWordSuffix;
+}
+
++ (NSArray *)businessPreFixes{
+    static NSArray *__businessPrefixes;
+    if (__businessPrefixes == nil) {
+        __businessPrefixes = @[@"News", @"Home", @"World", @"General", @"Giant", @"Big", @"Honey", @"Delta", @"Southwest", @"Dr.", @"Citi", @"Wells", @"Jamba", @"Cost", @"Green"];
+    }
+    return __businessPrefixes;
+}
+
++ (NSArray *)businessMiddleParts{
+    static NSArray *__businessMiddleParts;
+    if (__businessMiddleParts == nil) {
+        __businessMiddleParts = @[@"Depot", @"Juice", @"Bucks", @"Market", @"Air", @"Commercial", @"Fuel", @"Motor", @"Electric", @"Mae", @"Fruit", ];
+    }
+    return __businessMiddleParts;
+}
+
++ (NSArray *)businessSuffixes{
+    static NSArray *__businessNameSuffixes;
+    if (__businessNameSuffixes == nil) {
+        __businessNameSuffixes = @[@"Motors", @"Builders", @"Works", @"Technologies", @"Group", @"Institute", @"Labs", @"Communications", @"Electric", @"Co-Op", @"Holdings", @"Systems", @"International", @"Mobile"];
+    }
+    return __businessNameSuffixes;
+}
+
++ (NSArray *)corporateMonikers{
+    static NSArray *__corporateSuffixes;
+    if (__corporateSuffixes == nil) {
+        __corporateSuffixes = @[@", Inc", @"Incorporated", @", LLC", @".com"];
+    }
+    return __corporateSuffixes;
 }
 @end
