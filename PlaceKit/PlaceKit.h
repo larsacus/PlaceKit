@@ -243,4 +243,44 @@ extern NSString * const kPLKPlaceRandomGreyscaleImageURLString;
  */
 + (CGPoint)placeRandomPointWithinRect:(CGRect)rect;
 
+//-----------------
+/** @name Colors */
+//-----------------
+
+/** Place a random HSB color with a given hue. Saturation and value are randomized. Alpha is 1.
+ 
+ @param hue A hue value between 0 and 1
+ */
++ (UIColor *)placeRandomColorWithHue:(CGFloat)hue;
+
+/** Place a random RGB color with an alpha of 1.0.
+ */
++ (UIColor *)placeRandomColor;
+
+/** Place a random RGB color with a given alpha.
+ 
+ @param alpha An alpha value for the random color
+ */
++ (UIColor *)placeRandomColorWithAlpha:(CGFloat)alpha;
+
+/** Place a random color with a random alpha value between 0.1 and 1.0.
+ */
++ (UIColor *)placeRandomColorWithRandomAlpha;
+
+/** Place a random greyscale color with an alpha value of 1.0.
+ */
++ (UIColor *)placeRandomGreyscaleColor;
+
+/** Place a random grescale color with a given alpha.
+ 
+ @param alpha An alpha value for the random color
+ */
++ (UIColor *)placeRandomGreyscaleColorWithAlpha:(CGFloat)alpha;
+
+/** Place a random greyscale color with a random alpha between 0.1 and 1.0.
+ */
++ (UIColor *)placeRandomGreyscaleColorWithRandomAlpha;
+
+
+
 @end

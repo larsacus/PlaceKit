@@ -308,7 +308,7 @@ NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
 }
 
 + (CGFloat)placeRandomFloatInRange:(NSRange)range{
-    return range.location + arc4random_uniform(range.length);
+    return range.location + arc4random_uniform(range.length) + [self placeRandomPercentage];
 }
 
 + (CGFloat)placeRandomPercentage{
@@ -354,6 +354,56 @@ NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
     CGFloat xOrigin = [self placeRandomFloatInRange:NSMakeRange(minX, maxX)];
     CGFloat yOrigin = [self placeRandomFloatInRange:NSMakeRange(minY, maxY)];
     return CGPointMake(xOrigin, yOrigin);
+}
+
+#pragma mark - Colors
++ (UIColor *)placeRandomColorWithHue:(CGFloat)hue{
+    NSParameterAssert((hue <= 1) && (hue >= 0));
+    
+    CGFloat s = [self placeRandomPercentage];
+    CGFloat b = [self placeRandomPercentage];
+    
+    return [UIColor colorWithHue:hue
+                      saturation:s
+                      brightness:b
+                           alpha:1.f];
+}
+
++ (UIColor *)placeRandomColor{
+    return [self placeRandomColorWithAlpha:1.f];
+}
+
++ (UIColor *)placeRandomColorWithAlpha:(CGFloat)alpha{
+    CGFloat r = [self placeRandomPercentage];
+    CGFloat g = [self placeRandomPercentage];
+    CGFloat b = [self placeRandomPercentage];
+    
+    return [UIColor colorWithRed:r
+                           green:g
+                            blue:b
+                           alpha:1.f];
+}
+
++ (UIColor *)placeRandomColorWithRandomAlpha{
+    CGFloat alpha = MAX([self placeRandomPercentage], 0.1f);
+    return [self placeRandomColorWithAlpha:alpha];
+}
+
++ (UIColor *)placeRandomGreyscaleColor{
+    return [self placeRandomGreyscaleColorWithAlpha:1.f];
+}
+
++ (UIColor *)placeRandomGreyscaleColorWithAlpha:(CGFloat)alpha{
+    CGFloat greyNess = MIN(MAX([self placeRandomPercentage],0.1f),0.95);
+    return [UIColor colorWithRed:greyNess
+                           green:greyNess
+                            blue:greyNess
+                           alpha:alpha];
+}
+
++ (UIColor *)placeRandomGreyscaleColorWithRandomAlpha{
+    CGFloat alpha = MAX([self placeRandomPercentage],0.1f);
+    return [self placeRandomGreyscaleColorWithAlpha:alpha];
 }
 
 #pragma mark - Names Storage
