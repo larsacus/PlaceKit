@@ -8,8 +8,6 @@
 
 #import "PlaceKit.h"
 
-#import "AFNetworking.h"
-
 NSString * const kPLKPlaceKittenImageURLString = @"http://placekitten.com/%1.0f/%1.0f";
 NSString * const kPLKPlaceKittenGreyscaleImageURLString = @"http://placekitten.com/g/%1.0f/%1.0f";
 NSString * const kPLKPlaceBaconImageURLString = @"http://baconmockup.com/%1.0f/%1.0f";
@@ -19,17 +17,6 @@ NSString * const kPLKPlaceRandomGreyscaleImageURLString = @"http://lorempixel.co
 NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
 
 @implementation PlaceKit
-
-+ (AFHTTPClient *)httpClient{
-    static AFHTTPClient *__httpClient;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^(void){
-        NSURL *url = [NSURL URLWithString:@""];
-        __httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
-        [__httpClient registerHTTPOperationClass:[AFImageRequestOperation class]];
-    });
-    return __httpClient;
-}
 
 #pragma mark - Images
 + (void)placeKittenImageWithSize:(CGSize)size
@@ -99,15 +86,20 @@ NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
 
 + (void)requestImageWithPath:(NSString *)path size:(CGSize)size completion:(void(^)(UIImage *image))completionBlock{
     CGFloat screenScale = [[UIScreen mainScreen] scale];
-    [[self httpClient]
-     getPath:[NSString stringWithFormat:path, size.width*screenScale, size.height*screenScale]
-     parameters:nil
-     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-         UIImage *image = [UIImage imageWithData:responseObject scale:screenScale];
-         completionBlock(image);
-     }
-     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         completionBlock(nil);
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:path, size.width*screenScale, size.height*screenScale]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection
+     sendAsynchronousRequest:request
+     queue:[NSOperationQueue mainQueue]
+     completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+         if (error == nil) {
+             UIImage *image = [UIImage imageWithData:data scale:screenScale];
+             completionBlock(image);
+         }
+         else{
+             completionBlock(nil);
+         }
      }];
 }
 
@@ -136,40 +128,51 @@ NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
     
     urlString = [urlString stringByAppendingPathComponent:paragraphsArg];
     
-    [[self httpClient] getPath:urlString
-                    parameters:nil
-                       success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                           NSData *data = [NSData dataWithData:responseObject];
-                           
-                           NSString *returnString = [NSString stringWithCString:[data bytes] encoding:NSUTF8StringEncoding];
-                           completionBlock(returnString);
-                       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                           completionBlock(nil);
-                       }];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection
+     sendAsynchronousRequest:request
+     queue:[NSOperationQueue mainQueue]
+     completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+         if (error == nil) {
+             NSString *returnString = [NSString stringWithCString:[data bytes] encoding:[NSString defaultCStringEncoding]];
+             completionBlock(returnString);
+         }
+         else{
+             completionBlock(nil);
+         }
+     }];
 }
 
 + (void)placeHipsterIpsumWithNumberOfParagraphs:(NSInteger)numberOfParagraphs
                                     shotOfLatin:(BOOL)shotOfLatin
                                      completion:(void(^)(NSString *hipsterIpsum))completionBlock{
-    NSString *hipsterPath = @"http://hipsterjesus.com/api";
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:@(numberOfParagraphs) forKey:@"paras"];
+    NSMutableString *hipsterPath = [@"http://hipsterjesus.com/api?" mutableCopy];
+    [hipsterPath appendFormat:@"paras=%i",numberOfParagraphs];
+    [hipsterPath appendString:@"&html=false"];
     
     if (shotOfLatin) {
-        params[@"type"] = @"hipster-latin";
+        [hipsterPath appendFormat:@"&type=hipster-latin"];
     }
     else{
-        params[@"type"] = @"hipster-centric";
+        [hipsterPath appendFormat:@"&type=hipster-centric"];
     }
     
-    [[self httpClient]
-     getPath:hipsterPath
-     parameters:params
-     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-         if (completionBlock != nil) {
-             completionBlock(responseObject);
+    NSURL *url = [NSURL URLWithString:hipsterPath];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection
+     sendAsynchronousRequest:request
+     queue:[NSOperationQueue mainQueue]
+     completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+         if (error == nil) {
+             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+             
+             NSString *returnString = dict[@"text"];
+             if (completionBlock != nil) {
+                 completionBlock(returnString);
+             }
          }
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         if (completionBlock != nil) {
+         else{
              completionBlock(nil);
          }
      }];
@@ -183,15 +186,18 @@ NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
                                          paragraphLength:paragraphLength
                                                  options:options];
     
-    [[self httpClient]
-     getPath:htmlURL.absoluteString
-     parameters:nil
-     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-         if (completionBlock != nil) {
-             completionBlock(responseObject);
+    NSURLRequest *request = [NSURLRequest requestWithURL:htmlURL];
+    [NSURLConnection
+     sendAsynchronousRequest:request
+     queue:[NSOperationQueue mainQueue]
+     completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+         if (error == nil) {
+             NSString *returnString = [NSString stringWithCString:[data bytes] encoding:[NSString defaultCStringEncoding]];
+             if (completionBlock != nil) {
+                 completionBlock(returnString);
+             }
          }
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         if (completionBlock != nil) {
+         else{
              completionBlock(nil);
          }
      }];
@@ -313,6 +319,10 @@ NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
 
 + (CGFloat)placeRandomPercentage{
     return arc4random_uniform(100)/100.f;
+}
+
++ (CGFloat)placeRandomPercentageInRange:(NSRange)range{
+    return (range.location+arc4random_uniform(range.length))/100.f;
 }
 
 #pragma mark - Geometry

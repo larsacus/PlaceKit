@@ -213,6 +213,15 @@ extern NSString * const kPLKPlaceRandomGreyscaleImageURLString;
  */
 + (CGFloat)placeRandomPercentage;
 
+/** Place a random float value in the range [0,1] with a given input boundaries.
+ 
+ @warning The range input is taken in the range betwee [0,100] due to the range struct only storing integer values. For example, if you want a percentage range returned to be [0.3f,0.8f], your input range would be NSMakeRange(30,50).
+ 
+ @param range A range indicating the percentage range from [0,100] that the float should be bound.
+ @return A float between [0,1]
+ */
++ (CGFloat)placeRandomPercentageInRange:(NSRange)range;
+
 //------–-----------
 /** @name Geometry */
 //------–-----------
@@ -271,7 +280,7 @@ extern NSString * const kPLKPlaceRandomGreyscaleImageURLString;
  */
 + (UIColor *)placeRandomGreyscaleColor;
 
-/** Place a random grescale color with a given alpha.
+/** Place a random greyscale color with a given alpha.
  
  @param alpha An alpha value for the random color
  */
