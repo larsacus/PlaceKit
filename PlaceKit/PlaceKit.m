@@ -370,8 +370,8 @@ NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
 + (UIColor *)placeRandomColorWithHue:(CGFloat)hue{
     NSParameterAssert((hue <= 1) && (hue >= 0));
     
-    CGFloat s = [self placeRandomPercentage];
-    CGFloat b = [self placeRandomPercentage];
+    CGFloat s = [self placeRandomPercentageInRange:NSMakeRange(10, 90)];
+    CGFloat b = [self placeRandomPercentageInRange:NSMakeRange(10, 90)];
     
     return [UIColor colorWithHue:hue
                       saturation:s
@@ -405,10 +405,8 @@ NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
 
 + (UIColor *)placeRandomGreyscaleColorWithAlpha:(CGFloat)alpha{
     CGFloat greyNess = MIN(MAX([self placeRandomPercentage],0.1f),0.95);
-    return [UIColor colorWithRed:greyNess
-                           green:greyNess
-                            blue:greyNess
-                           alpha:alpha];
+    return [UIColor colorWithWhite:greyNess
+                             alpha:alpha];
 }
 
 + (UIColor *)placeRandomGreyscaleColorWithRandomAlpha{

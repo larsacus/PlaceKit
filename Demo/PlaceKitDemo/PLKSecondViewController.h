@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface PLKSecondViewController : UIViewController
+- (IBAction)newColorWithSameHue:(UIButton *)sender;
+- (IBAction)newRandomColor:(UIButton *)sender;
+- (IBAction)newRandomGreyscale:(UIButton *)sender;
 
 @end

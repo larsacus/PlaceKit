@@ -32,12 +32,28 @@
     [super viewDidLoad];
     UINib *cellNib = [UINib nibWithNibName:@"PLKCollectionViewImageCell" bundle:nil];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"placeholderCell"];
+    
+//    [PlaceKit placeHipsterIpsumWithNumberOfParagraphs:1 shotOfLatin:YES completion:^(NSString *hipsterIpsum) {
+//        NSLog(@"%@", hipsterIpsum);
+//    }];
+//    [PlaceKit placeTextWithNumberOfParagraphs:3
+//                                     ofLength:PLKTextParagraphLengthLong
+//                                      options:PLKTextOptionsPrude
+//                                   completion:^(NSString *placeText) {
+//                                       NSLog(@"%@", placeText);
+//                                   }];
+//    [PlaceKit placeHTMLWithNumberOfParagraphs:1
+//                                     ofLength:PLKTextParagraphLengthLong
+//                                      options:PLKHTMLOptionsBlockquotes
+//                                   completion:^(NSString *placeText) {
+//                                       NSLog(@"%@", placeText);
+//                                   }];
 }
 
 #pragma mark - CollectionView Data Source
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section{
-    return [PlaceKit placeRandomFloatInRange:NSMakeRange(35.f, 300.f)];
+    return [PlaceKit placeRandomFloatInRange:NSMakeRange(35, 300)];
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
@@ -54,7 +70,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return [PlaceKit placeRandomSizeWithDimensionInRange:NSMakeRange(45.f, 130.f)];
+    return [PlaceKit placeRandomSizeWithDimensionInRange:NSMakeRange(45, 130)];
 }
 
 - (void)randomPlaceholderImageForCell:(PLKCollectionViewImageCell *)cell{
