@@ -300,6 +300,7 @@ NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
     NSAssert(words > 0, @"Business name must have a length!");
     
     NSMutableString *businessName = [NSMutableString string];
+    BOOL randomBool = (BOOL)roundf([self placeRandomPercentage]);
     
     switch (words) {
         case 1:{
@@ -310,10 +311,10 @@ NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
              }
             break;
         case 2:{
-            BOOL generalPrefix = (BOOL)roundf([self placeRandomPercentage]);
+            
             NSString *generalPrefixString = nil;
             
-            if (generalPrefix) {
+            if (randomBool) {
                 NSArray *prefixes = [self businessPreFixes];
                 generalPrefixString = prefixes[[self placeRandomIntegerLessThan:prefixes.count]];
             }
@@ -330,6 +331,34 @@ NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
         }
             break;
         case 3:
+            if (randomBool) {
+                [businessName appendString:[self placeRandomBusinessNameWithNumberOfWords:2]];
+                
+                NSArray *suffixes = [self businessCorporateMonickers];
+                [businessName appendString:suffixes[[self placeRandomIntegerLessThan:suffixes.count]]];
+            }
+            else{
+                BOOL mashedWord = (BOOL)roundf([self placeRandomPercentage]);
+                NSString *generalPrefixString = nil;
+                
+                if (mashedWord) {
+                    NSArray *prefixes = [self businessPreFixes];
+                    generalPrefixString = prefixes[[self placeRandomIntegerLessThan:prefixes.count]];
+                }
+                else{
+                    generalPrefixString = [self placeRandomBusinessNameWithNumberOfWords:1];
+                }
+                
+                [businessName appendString:generalPrefixString];
+                
+                NSArray *middleWords = [self businessMiddleParts];
+                [businessName appendFormat:@" %@", middleWords[[self placeRandomIntegerLessThan:middleWords.count]]];
+                
+                NSArray *businessSuffixes = [self businessSuffixes];
+                NSString *businessSuffix = businessSuffixes[[self placeRandomIntegerLessThan:businessSuffixes.count]];
+                
+                [businessName appendFormat:@" %@", businessSuffix];
+            }
             break;
         case 4:
             break;
@@ -342,7 +371,7 @@ NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
 
 #pragma mark - Numbers
 + (NSString *)placeRandomPhoneNumber{
-    return [NSString stringWithFormat:@"(%3.0i) %3.0i-%4.0i", arc4random_uniform(999), arc4random_uniform(999), arc4random_uniform(9999)];
+    return [NSString stringWithFormat:@"(%3.3i) %3.3i-%4.4i", arc4random_uniform(999), arc4random_uniform(999), arc4random_uniform(9999)];
 }
 
 + (NSInteger)placeRandomIntegerLessThan:(NSInteger)lessThan{
@@ -499,7 +528,7 @@ NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
 + (NSArray *)businessNameSingleWordSuffix{
     static NSArray *__businessNameSingleWordSuffix;
     if (__businessNameSingleWordSuffix == nil) {
-        __businessNameSingleWordSuffix = @[@"get", @"bucks", @"pont", @"gle", @"co", @"ger", @"ter", @"thon", @"soft", @"get", @"ing", @"cast", @"a", @"well", @"na", @"state"];
+        __businessNameSingleWordSuffix = @[@"get", @"bucks", @"pont", @"gle", @"co", @"ger", @"ter", @"thon", @"soft", @"get", @"ing", @"cast", @"a", @"well", @"na", @"state", @"r"];
     }
     return __businessNameSingleWordSuffix;
 }
@@ -528,11 +557,20 @@ NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
     return __businessNameSuffixes;
 }
 
-+ (NSArray *)corporateMonikers{
++ (NSArray *)businessCorporateMonickers{
     static NSArray *__corporateSuffixes;
     if (__corporateSuffixes == nil) {
-        __corporateSuffixes = @[@", Inc", @"Incorporated", @", LLC", @".com"];
+        __corporateSuffixes = @[@", Inc", @" Incorporated", @", LLC"];
     }
     return __corporateSuffixes;
 }
+
++ (NSArray *)businessDomains{
+    static NSArray *__businessDomains;
+    if (__businessDomains == nil) {
+        __businessDomains = @[@".com", @".net"];
+    }
+    return __businessDomains;
+}
+
 @end
