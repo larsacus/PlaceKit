@@ -297,7 +297,47 @@ NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
 }
 
 + (NSString *)placeRandomBusinessNameWithNumberOfWords:(NSUInteger)words{
+    NSAssert(words > 0, @"Business name must have a length!");
     
+    NSMutableString *businessName = [NSMutableString string];
+    
+    switch (words) {
+        case 1:{
+            NSArray *prefixes = [self businessNameSingleWordPrefix];
+            NSArray *suffixes = [self businessNameSingleWordSuffix];
+            [businessName appendString:prefixes[[self placeRandomIntegerLessThan:prefixes.count]]];
+            [businessName appendString:suffixes[[self placeRandomIntegerLessThan:suffixes.count]]];
+             }
+            break;
+        case 2:{
+            BOOL generalPrefix = (BOOL)roundf([self placeRandomPercentage]);
+            NSString *generalPrefixString = nil;
+            
+            if (generalPrefix) {
+                NSArray *prefixes = [self businessPreFixes];
+                generalPrefixString = prefixes[[self placeRandomIntegerLessThan:prefixes.count]];
+            }
+            else{
+                generalPrefixString = [self placeRandomBusinessNameWithNumberOfWords:1];
+            }
+            
+            [businessName appendFormat:@"%@ ", generalPrefixString];
+            
+            NSArray *businessSuffixes = [self businessSuffixes];
+            NSString *businessSuffix = businessSuffixes[[self placeRandomIntegerLessThan:businessSuffixes.count]];
+            
+            [businessName appendString:businessSuffix];
+        }
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        default:
+            break;
+    }
+    
+    return [businessName copy];
 }
 
 #pragma mark - Numbers
@@ -412,6 +452,15 @@ NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
 + (UIColor *)placeRandomGreyscaleColorWithRandomAlpha{
     CGFloat alpha = MAX([self placeRandomPercentage],0.1f);
     return [self placeRandomGreyscaleColorWithAlpha:alpha];
+}
+
++ (UIColor *)placeRandomColorWithHueOfColor:(UIColor *)color{
+    CGFloat hue;
+    [color getHue:&hue
+       saturation:nil
+       brightness:nil
+            alpha:nil];
+    return [self placeRandomColorWithHue:hue];
 }
 
 #pragma mark - Names Storage

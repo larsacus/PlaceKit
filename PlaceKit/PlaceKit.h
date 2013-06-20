@@ -290,6 +290,10 @@ extern NSString * const kPLKPlaceRandomGreyscaleImageURLString;
  */
 + (UIColor *)placeRandomGreyscaleColorWithRandomAlpha;
 
-
+/** Place a random color with the same hue as a reference color.
+ 
+ @param color A color to grab a reference hue from
+ */
++ (UIColor *)placeRandomColorWithHueOfColor:(UIColor *)color;
 
 @end
