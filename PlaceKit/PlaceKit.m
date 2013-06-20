@@ -536,7 +536,7 @@ NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
 + (NSArray *)businessPreFixes{
     static NSArray *__businessPrefixes;
     if (__businessPrefixes == nil) {
-        __businessPrefixes = @[@"News", @"Home", @"World", @"General", @"Giant", @"Big", @"Honey", @"Delta", @"Southwest", @"Dr.", @"Citi", @"Wells", @"Jamba", @"Cost", @"Green"];
+        __businessPrefixes = @[@"News", @"Home", @"World", @"General", @"Giant", @"Big", @"Honey", @"Delta", @"Southwest", @"Dr.", @"Citi", @"Wells", @"Jamba", @"Cost", @"Green" ];
     }
     return __businessPrefixes;
 }
@@ -552,7 +552,7 @@ NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
 + (NSArray *)businessSuffixes{
     static NSArray *__businessNameSuffixes;
     if (__businessNameSuffixes == nil) {
-        __businessNameSuffixes = @[@"Motors", @"Builders", @"Works", @"Technologies", @"Group", @"Institute", @"Labs", @"Communications", @"Electric", @"Co-Op", @"Holdings", @"Systems", @"International", @"Mobile"];
+        __businessNameSuffixes = @[@"Motors", @"Builders", @"Works", @"Technologies", @"Institute", @"Labs", @"Communications", @"Electric", @"Co-Op", @"Holdings", @"Systems", @"International", @"Mobile", @"Bank", @"Electric"];
     }
     return __businessNameSuffixes;
 }
@@ -560,7 +560,7 @@ NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
 + (NSArray *)businessCorporateMonickers{
     static NSArray *__corporateSuffixes;
     if (__corporateSuffixes == nil) {
-        __corporateSuffixes = @[@", Inc", @" Incorporated", @", LLC"];
+        __corporateSuffixes = @[@", Inc", @" Incorporated", @", LLC", @", PC", @" Group"];
     }
     return __corporateSuffixes;
 }
