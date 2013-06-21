@@ -4,10 +4,7 @@ Pod::Spec.new do |s|
   s.summary      = "Placeholders, lorem ipsum, and random data oh my!"
   s.description  = "A placeholder and random data framework for all of your early-development and prototyping work."
   s.homepage     = "https://github.com/larsacus/PlaceKit"
-  s.license      = {
-    :type => 'MIT',
-    :file => 'LICENSE'
-  }
+  s.license      = 'MIT'
   s.author       = { "Lars Anderson" => "iAm@theonlylars.com" }
   s.source       = {
     :git => "https://github.com/larsacus/PlaceKit.git",
