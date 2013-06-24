@@ -48,6 +48,11 @@
 //                                   completion:^(NSString *placeText) {
 //                                       NSLog(@"%@", placeText);
 //                                   }];
+    
+    for (int i = 0; i < 50; i++) {
+        NSLog(@"%@", [PlaceKit placeRandomBusinessNameWithNumberOfWords:3]);
+//        NSLog(@"%@", [PlaceKit placeRandomPhoneNumber]);
+    }
 }
 
 #pragma mark - CollectionView Data Source

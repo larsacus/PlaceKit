@@ -57,33 +57,29 @@
 
 - (IBAction)newColorWithSameHue:(UIButton *)sender {
     UIColor *currentColor = self.view.backgroundColor;
-    CGFloat hue;
-    [currentColor getHue:&hue
-              saturation:nil
-              brightness:nil
-                   alpha:nil];
+    UIColor *color = [PlaceKit placeRandomColorWithHueOfColor:currentColor];
     
-    UIColor *color = [PlaceKit placeRandomColorWithHue:hue];
-    [UIView animateWithDuration:0.25f
-                     animations:^{
-                         self.view.backgroundColor = color;
-                     }];
+    [self animateToColor:color];
     
 }
 
 - (IBAction)newRandomColor:(UIButton *)sender {
     UIColor *color = [PlaceKit placeRandomColor];
-    [UIView animateWithDuration:0.25f
-                     animations:^{
-                         self.view.backgroundColor = color;
-                     }];
+    [self animateToColor:color];
 }
 
 - (IBAction)newRandomGreyscale:(UIButton *)sender {
     UIColor *color = [PlaceKit placeRandomGreyscaleColor];
-    [UIView animateWithDuration:0.25f
+    [self animateToColor:color];
+}
+
+- (void)animateToColor:(UIColor *)color{
+    [UIView animateWithDuration:0.25
+                          delay:0.f
+                        options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          self.view.backgroundColor = color;
-                     }];
+                     }
+                     completion:nil];
 }
 @end
