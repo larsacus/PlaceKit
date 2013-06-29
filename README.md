@@ -54,6 +54,11 @@ If you would like to use the `UIImageView` categories for the placeholder images
 ###Standalone
 The PlaceKit core was built dependency-free to make it as easy as possible to drop into your project. Simply drop `PlaceKit.{h,m}` into your project and import as necessary! If you would like to use the `UIImageView` category, you will also need to integrate AFNetworking into your project.
 
-##License
+##Known Issues
 
+1. Still needs the pod submitted
+2. PlaceKit's demo application needs some work
+3. Random business names API is still a work-in-progress and could use some more work
+
+##License
 Standard MIT license
