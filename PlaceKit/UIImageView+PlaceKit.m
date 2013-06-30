@@ -80,7 +80,17 @@
 #pragma mark - Common
 - (void)placeImageWithURLString:(NSString *)path size:(CGSize)size{
     CGFloat screenScale = [[UIScreen mainScreen] scale];
-    NSString *urlString = [NSString stringWithFormat:path, size.width*screenScale, size.height*screenScale];
+    CGFloat w = size.width*screenScale;
+    CGFloat h = size.height*screenScale;
+    if ([path rangeOfString:@"lorempixel.com"].length > 0) {
+        CGFloat max = 1920.0f;
+        if (w > max || h > max) {
+          w = MIN(w,max);
+          h = MIN(h,max);
+          NSLog(@"%s: Warn: requested image size > max. using %.0fx%.0f", __PRETTY_FUNCTION__, w, h);
+        }
+    }
+    NSString *urlString = [NSString stringWithFormat:path, w, h];
     NSURL *url = [NSURL URLWithString:urlString];
     [self setImageWithURL:url];
 }
