@@ -43,6 +43,7 @@
 /** Place a random image in a specific category with a given size from lorempixel.com
  
  @param size The size in points of your random image
+ @warning Image size will be clamped to max size supported by service
  @param category The category that you would like your image to be chosen from. A full list of valid categories can be found at http://lorempixel.com
  */
 - (void)placeRandomImageWithSize:(CGSize)size
@@ -51,6 +52,7 @@
 /** Place a random greyscale image in a specific category with a given size from lorempixel.com
  
  @param size The size in points of your random greyscale image
+ @warning Image size will be clamped to max size supported by service
  @param category The category that you would like your image to be chosen from. A full list of valid categories can be found at http://lorempixel.com
  */
 - (void)placeRandomGreyscaleImageWithSize:(CGSize)size
@@ -59,12 +61,14 @@
 /** Place a random image with a given size from lorempixel.com
  
  @param size The size in points of your random image
+ @warning Image size will be clamped to max size supported by service
  */
 - (void)placeRandomImageWithSize:(CGSize)size;
 
 /** Place a random greyscale image with a given size from lorempixel.com
  
  @param size The size in points of your random greyscale image
+ @warning Image size will be clamped to max size supported by service
  */
 - (void)placeRandomGreyscaleImageWithSize:(CGSize)size;
 
@@ -89,20 +93,24 @@
 /** Place a random image in a specific category with an inherited size from lorempixel.com
  
  @param category The category that you would like your image to be chosen from. A full list of valid categories can be found at http://lorempixel.com
+ @warning Image size will be clamped to max size supported by service
  */
 - (void)placeRandomImageFromCategory:(NSString *)category;
 
 /** Place a random greyscale image in a specific category with an inherited size from lorempixel.com
  
  @param category The category that you would like your image to be chosen from. A full list of valid categories can be found at http://lorempixel.com
+ @warning Image size will be clamped to max size supported by service
  */
 - (void)placeRandomGreyscaleImageFromCategory:(NSString *)category;
 
 /** Place a random image with an inherited size from lorempixel.com
+ @warning Image size will be clamped to max size supported by service
  */
 - (void)placeRandomImage;
 
 /** Place a random greyscale image with an inherited size from lorempixel.com
+ @warning Image size will be clamped to max size supported by service
  */
 - (void)placeRandomGreyscaleImage;
 

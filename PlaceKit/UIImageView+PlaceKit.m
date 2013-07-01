@@ -82,12 +82,13 @@
     CGFloat screenScale = [[UIScreen mainScreen] scale];
     CGFloat w = size.width*screenScale;
     CGFloat h = size.height*screenScale;
-    if ([path rangeOfString:@"lorempixel.com"].length > 0) {
+    NSString *service = @"lorempixel.com";
+    if ([path rangeOfString:service].length > 0) {
         CGFloat max = 1920.0f;
         if (w > max || h > max) {
           w = MIN(w,max);
           h = MIN(h,max);
-          NSLog(@"%s: Warn: requested image size > max. using %.0fx%.0f", __PRETTY_FUNCTION__, w, h);
+          NSLog(@"%s: Warn: clamping image size to %@ max size. using %.0fx%.0f", __PRETTY_FUNCTION__, service, w, h);
         }
     }
     NSString *urlString = [NSString stringWithFormat:path, w, h];
