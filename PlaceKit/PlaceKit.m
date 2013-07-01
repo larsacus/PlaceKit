@@ -13,7 +13,7 @@ NSString * const kPLKPlaceKittenGreyscaleImageURLString = @"http://placekitten.c
 NSString * const kPLKPlaceBaconImageURLString = @"http://baconmockup.com/%1.0f/%1.0f";
 NSString * const kPLKPlaceHolderImageURLString = @"http://placehold.it/%1.0fx%1.0f";
 NSString * const kPLKPlaceRandomImageURLString = @"http://lorempixel.com/%1.0f/%1.0f";
-NSString * const kPLKPlaceRandomGreyscaleImageURLString = @"http://lorempixel.com/%1.0f/%1.0f";
+NSString * const kPLKPlaceRandomGreyscaleImageURLString = @"http://lorempixel.com/g/%1.0f/%1.0f";
 NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
 
 @implementation PlaceKit
