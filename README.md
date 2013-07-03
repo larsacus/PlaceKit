@@ -56,9 +56,8 @@ The PlaceKit core was built dependency-free to make it as easy as possible to dr
 
 ##Known Issues
 
-1. Still needs the pod submitted
-2. PlaceKit's demo application needs some work
-3. Random business names API is still a work-in-progress and could use some more work
+1. PlaceKit's demo application needs some work
+2. Random business names API is still a work-in-progress and could use some more work
 
 ##License
 Standard MIT license
