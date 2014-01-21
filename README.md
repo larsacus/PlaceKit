@@ -61,3 +61,7 @@ The PlaceKit core was built dependency-free to make it as easy as possible to dr
 
 ##License
 Standard MIT license
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/larsacus/placekit/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
