@@ -46,6 +46,10 @@
     [self placeImageWithURLString:kPLKPlaceRandomGreyscaleImageURLString size:size];
 }
 
+- (void)placeDowneyImageWithSize:(CGSize)size {
+    [self placeImageWithURLString:kPLKPlaceRandomDowneyImageURLString size:size];
+}
+
 #pragma mark - Inherits UIImageView Bounds
 - (void)placeKittenImage{
     [self placeImageWithURLString:kPLKPlaceKittenImageURLString size:self.bounds.size];
@@ -57,6 +61,10 @@
 
 - (void)placeHolderImage{
     [self placeImageWithURLString:kPLKPlaceHolderImageURLString size:self.bounds.size];
+}
+
+- (void)placeDowneyImage {
+    [self placeImageWithURLString:kPLKPlaceRandomDowneyImageURLString size:self.bounds.size];
 }
 
 - (void)placeRandomImageFromCategory:(NSString *)category{

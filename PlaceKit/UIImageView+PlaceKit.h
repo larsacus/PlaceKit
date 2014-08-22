@@ -72,6 +72,14 @@
  */
 - (void)placeRandomGreyscaleImageWithSize:(CGSize)size;
 
+
+/** Place a gorgeous headshot of Robert Downey, Jr. with a given size from http://rdjpg.com
+ 
+ @param size The size in points of your random Downey image
+ @warning Image size will be clamped to max size supported by service
+ */
+- (void)placeDowneyImageWithSize:(CGSize)size;
+
 //------–------------------
 /** @name Implicit Sizing */
 //-------------------------
@@ -89,6 +97,10 @@
 /** Place a generic placeholder image with an inherited size from http://placehold.it
  */
 - (void)placeHolderImage;
+
+/** Place a gorgeous headshot of Robert Downey, Jr. using the implicit sizing of your UIImageView
+ */
+- (void)placeDowneyImage;
 
 /** Place a random image in a specific category with an inherited size from lorempixel.com
  

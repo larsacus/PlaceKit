@@ -15,6 +15,7 @@ NSString * const kPLKPlaceHolderImageURLString = @"http://placehold.it/%1.0fx%1.
 NSString * const kPLKPlaceRandomImageURLString = @"http://lorempixel.com/%1.0f/%1.0f";
 NSString * const kPLKPlaceRandomGreyscaleImageURLString = @"http://lorempixel.com/g/%1.0f/%1.0f";
 NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
+NSString * const kPLKPlaceRandomDowneyImageURLString = @"http://rdjpg.com/%1.0f/%1.0f";
 
 @implementation PlaceKit
 
@@ -80,6 +81,13 @@ NSString * const kPLKPlaceRandomTextURLString = @"http://loripsum.net/api";
 + (void)placeRandomGreyscaleImageWithSize:(CGSize)size
                                completion:(void(^)(UIImage *randomImage))completionBlock{
     [self requestImageWithPath:kPLKPlaceRandomGreyscaleImageURLString
+                          size:size
+                    completion:completionBlock];
+}
+
++ (void)placeDowneyImageWithSize:(CGSize)size
+                      completion:(void(^)(UIImage *downey))completionBlock {
+    [self requestImageWithPath:kPLKPlaceRandomDowneyImageURLString
                           size:size
                     completion:completionBlock];
 }

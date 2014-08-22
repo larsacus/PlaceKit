@@ -44,6 +44,7 @@ extern NSString * const kPLKPlaceBaconImageURLString;
 extern NSString * const kPLKPlaceHolderImageURLString;
 extern NSString * const kPLKPlaceRandomImageURLString;
 extern NSString * const kPLKPlaceRandomGreyscaleImageURLString;
+extern NSString * const kPLKPlaceRandomDowneyImageURLString;
 
 @interface PlaceKit : NSObject
 
@@ -112,6 +113,14 @@ extern NSString * const kPLKPlaceRandomGreyscaleImageURLString;
  */
 + (void)placeRandomGreyscaleImageWithSize:(CGSize)size
                                completion:(void(^)(UIImage *randomImage))completionBlock;
+
+/** Place a gorgeous headshot of Robert Downey, Jr. with a given size from http://rdjpg.com
+ 
+ @param sixe The size in points of your random Downey image
+ @param completionBlock The block that your placeholder image will be returned in
+ */
++ (void)placeDowneyImageWithSize:(CGSize)size
+                      completion:(void(^)(UIImage *downey))completionBlock;
 
 //------–------------------
 /** @name Placeholder text */

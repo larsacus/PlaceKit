@@ -101,7 +101,10 @@
             [cell.imageView placeRandomImageWithSize:cell.bounds.size];
         }
             break;
-        case 5:
+        case 5: {
+            [cell.imageView placeDowneyImageWithSize:cell.bounds.size];
+        }
+            break;
         default:{
             [cell.imageView placeRandomGreyscaleImageWithSize:cell.bounds.size category:@"sports"];
         }
