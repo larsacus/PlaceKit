@@ -15,6 +15,7 @@ Nothing motivates a designer more than seeing random meat-based assets on an app
     - Random images from [baconmockup.com](http://baconmockup.com)
     - Random images from [lorempixel.net](http://lorempixel.com)
     - Placeholder images from [placehold.it](http://placehold.it)
+    - NEW! Robert Downey Jr. headshots from [http://rdjpg.com](http://rdjpg.com)
 - Placeholder text
     - Hipster based text from [hipsteripsum.me](http://hipsteripsum.me)
     - Lorem Ipsum text/HTML/HTML URLs from [loripsum.net](http://loripsum.net)
