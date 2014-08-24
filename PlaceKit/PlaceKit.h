@@ -46,6 +46,16 @@ extern NSString * const kPLKPlaceRandomImageURLString;
 extern NSString * const kPLKPlaceRandomGreyscaleImageURLString;
 extern NSString * const kPLKPlaceRandomDowneyImageURLString;
 
+#ifndef PLKImage
+#if TARGET_OS_MAC
+#define PLKImage NSImage
+#define PLKColor NSColor
+#else
+#define PLKImage UIImage
+#define PLKColor UIColor
+#endif
+#endif //ifndef PLKImage
+
 @interface PlaceKit : NSObject
 
 //------–----------------
@@ -58,7 +68,7 @@ extern NSString * const kPLKPlaceRandomDowneyImageURLString;
  @param completionBlock The block that your kitten image will be returned in
  */
 + (void)placeKittenImageWithSize:(CGSize)size
-                      completion:(void(^)(UIImage *kittenImage))completionBlock;
+                      completion:(void(^)(PLKImage *kittenImage))completionBlock;
 
 /** Place an image of bacon or other meat with a given size from baconmockup.com
  
@@ -68,7 +78,7 @@ extern NSString * const kPLKPlaceRandomDowneyImageURLString;
  @param completionBlock The block that your meat-based image will be returned in
  */
 + (void)placeBaconImageWithSize:(CGSize)size
-                     completion:(void(^)(UIImage *baconImage))completionBlock;
+                     completion:(void(^)(PLKImage *baconImage))completionBlock;
 
 /** Place a generic placeholder image with a given size from http://placehold.it
  
@@ -76,7 +86,7 @@ extern NSString * const kPLKPlaceRandomDowneyImageURLString;
  @param completionBlock The block that your placeholder image will be returned in
  */
 + (void)placeHolderImageWithSize:(CGSize)size
-                      completion:(void(^)(UIImage *placeholderImage))completionBlock;
+                      completion:(void(^)(PLKImage *placeholderImage))completionBlock;
 
 /** Place a random image in a specific category with a given size from lorempixel.com
  
@@ -86,7 +96,7 @@ extern NSString * const kPLKPlaceRandomDowneyImageURLString;
  */
 + (void)placeRandomImageWithSize:(CGSize)size
                         category:(NSString *)category
-                      completion:(void(^)(UIImage *randomImage))completionBlock;
+                      completion:(void(^)(PLKImage *randomImage))completionBlock;
 
 /** Place a random greyscale image in a specific category with a given size from lorempixel.com
  
@@ -96,7 +106,7 @@ extern NSString * const kPLKPlaceRandomDowneyImageURLString;
  */
 + (void)placeRandomGreyscaleImageWithSize:(CGSize)size
                                  category:(NSString *)category
-                               completion:(void(^)(UIImage *randomImage))completionBlock;
+                               completion:(void(^)(PLKImage *randomImage))completionBlock;
 
 /** Place a random image with a given size from lorempixel.com
  
@@ -104,7 +114,7 @@ extern NSString * const kPLKPlaceRandomDowneyImageURLString;
  @param completionBlock The block that your placeholder image will be returned in
  */
 + (void)placeRandomImageWithSize:(CGSize)size
-                      completion:(void(^)(UIImage *randomImage))completionBlock;
+                      completion:(void(^)(PLKImage *randomImage))completionBlock;
 
 /** Place a random greyscale image with a given size from lorempixel.com
  
@@ -112,7 +122,7 @@ extern NSString * const kPLKPlaceRandomDowneyImageURLString;
  @param completionBlock The block that your placeholder image will be returned in
  */
 + (void)placeRandomGreyscaleImageWithSize:(CGSize)size
-                               completion:(void(^)(UIImage *randomImage))completionBlock;
+                               completion:(void(^)(PLKImage *randomImage))completionBlock;
 
 /** Place a gorgeous headshot of Robert Downey, Jr. with a given size from http://rdjpg.com
  
@@ -120,7 +130,7 @@ extern NSString * const kPLKPlaceRandomDowneyImageURLString;
  @param completionBlock The block that your placeholder image will be returned in
  */
 + (void)placeDowneyImageWithSize:(CGSize)size
-                      completion:(void(^)(UIImage *downey))completionBlock;
+                      completion:(void(^)(PLKImage *downey))completionBlock;
 
 //------–------------------
 /** @name Placeholder text */
@@ -269,40 +279,40 @@ extern NSString * const kPLKPlaceRandomDowneyImageURLString;
  
  @param hue A hue value between 0 and 1
  */
-+ (UIColor *)placeRandomColorWithHue:(CGFloat)hue;
++ (PLKColor *)placeRandomColorWithHue:(CGFloat)hue;
 
 /** Place a random RGB color with an alpha of 1.0.
  */
-+ (UIColor *)placeRandomColor;
++ (PLKColor *)placeRandomColor;
 
 /** Place a random RGB color with a given alpha.
  
  @param alpha An alpha value for the random color
  */
-+ (UIColor *)placeRandomColorWithAlpha:(CGFloat)alpha;
++ (PLKColor *)placeRandomColorWithAlpha:(CGFloat)alpha;
 
 /** Place a random color with a random alpha value between 0.1 and 1.0.
  */
-+ (UIColor *)placeRandomColorWithRandomAlpha;
++ (PLKColor *)placeRandomColorWithRandomAlpha;
 
 /** Place a random greyscale color with an alpha value of 1.0.
  */
-+ (UIColor *)placeRandomGreyscaleColor;
++ (PLKColor *)placeRandomGreyscaleColor;
 
 /** Place a random greyscale color with a given alpha.
  
  @param alpha An alpha value for the random color
  */
-+ (UIColor *)placeRandomGreyscaleColorWithAlpha:(CGFloat)alpha;
++ (PLKColor *)placeRandomGreyscaleColorWithAlpha:(CGFloat)alpha;
 
 /** Place a random greyscale color with a random alpha between 0.1 and 1.0.
  */
-+ (UIColor *)placeRandomGreyscaleColorWithRandomAlpha;
++ (PLKColor *)placeRandomGreyscaleColorWithRandomAlpha;
 
 /** Place a random color with the same hue as a reference color.
  
  @param color A color to grab a reference hue from
  */
-+ (UIColor *)placeRandomColorWithHueOfColor:(UIColor *)color;
++ (PLKColor *)placeRandomColorWithHueOfColor:(PLKColor *)color;
 
 @end

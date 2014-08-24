@@ -21,28 +21,28 @@ NSString * const kPLKPlaceRandomDowneyImageURLString = @"http://rdjpg.com/%1.0f/
 
 #pragma mark - Images
 + (void)placeKittenImageWithSize:(CGSize)size
-                      completion:(void(^)(UIImage *kittenImage))completionBlock{
+                      completion:(void(^)(PLKImage *kittenImage))completionBlock{
     [self requestImageWithPath:kPLKPlaceKittenImageURLString
                           size:size
                     completion:completionBlock];
 }
 
 + (void)placeKittenGreyImageWithSize:(CGSize)size
-                          completion:(void(^)(UIImage *greyKittenImage))completionBlock{
+                          completion:(void(^)(PLKImage *greyKittenImage))completionBlock{
     [self requestImageWithPath:kPLKPlaceKittenGreyscaleImageURLString
                           size:size
                     completion:completionBlock];
 }
 
 + (void)placeBaconImageWithSize:(CGSize)size
-                     completion:(void(^)(UIImage *baconImage))completionBlock{
+                     completion:(void(^)(PLKImage *baconImage))completionBlock{
     [self requestImageWithPath:kPLKPlaceBaconImageURLString
                           size:size
                     completion:completionBlock];
 }
 
 + (void)placeHolderImageWithSize:(CGSize)size
-                      completion:(void(^)(UIImage *placeholderImage))completionBlock{
+                      completion:(void(^)(PLKImage *placeholderImage))completionBlock{
     [self requestImageWithPath:kPLKPlaceHolderImageURLString
                           size:size
                     completion:completionBlock];
@@ -57,7 +57,7 @@ NSString * const kPLKPlaceRandomDowneyImageURLString = @"http://rdjpg.com/%1.0f/
 
 + (void)placeRandomImageWithSize:(CGSize)size
                         category:(NSString *)category
-                      completion:(void(^)(UIImage *randomImage))completionBlock{
+                      completion:(void(^)(PLKImage *randomImage))completionBlock{
     [self requestImageWithPath:[kPLKPlaceRandomImageURLString stringByAppendingPathComponent:category]
                           size:size
                     completion:completionBlock];
@@ -65,35 +65,39 @@ NSString * const kPLKPlaceRandomDowneyImageURLString = @"http://rdjpg.com/%1.0f/
 
 + (void)placeRandomGreyscaleImageWithSize:(CGSize)size
                                  category:(NSString *)category
-                               completion:(void(^)(UIImage *randomImage))completionBlock{
+                               completion:(void(^)(PLKImage *randomImage))completionBlock{
     [self requestImageWithPath:[kPLKPlaceRandomGreyscaleImageURLString stringByAppendingPathComponent:category]
                           size:size
                     completion:completionBlock];
 }
 
 + (void)placeRandomImageWithSize:(CGSize)size
-                      completion:(void(^)(UIImage *randomImage))completionBlock{
+                      completion:(void(^)(PLKImage *randomImage))completionBlock{
     [self requestImageWithPath:kPLKPlaceRandomImageURLString
                           size:size
                     completion:completionBlock];
 }
 
 + (void)placeRandomGreyscaleImageWithSize:(CGSize)size
-                               completion:(void(^)(UIImage *randomImage))completionBlock{
+                               completion:(void(^)(PLKImage *randomImage))completionBlock{
     [self requestImageWithPath:kPLKPlaceRandomGreyscaleImageURLString
                           size:size
                     completion:completionBlock];
 }
 
 + (void)placeDowneyImageWithSize:(CGSize)size
-                      completion:(void(^)(UIImage *downey))completionBlock {
+                      completion:(void(^)(PLKImage *downey))completionBlock {
     [self requestImageWithPath:kPLKPlaceRandomDowneyImageURLString
                           size:size
                     completion:completionBlock];
 }
 
-+ (void)requestImageWithPath:(NSString *)path size:(CGSize)size completion:(void(^)(UIImage *image))completionBlock{
++ (void)requestImageWithPath:(NSString *)path size:(CGSize)size completion:(void(^)(PLKImage *image))completionBlock{
+#if TARGET_OS_MAC
+    CGFloat screenScale = 1.f;
+#else 
     CGFloat screenScale = [[UIScreen mainScreen] scale];
+#endif
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:path, size.width*screenScale, size.height*screenScale]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -102,7 +106,11 @@ NSString * const kPLKPlaceRandomDowneyImageURLString = @"http://rdjpg.com/%1.0f/
      queue:[NSOperationQueue mainQueue]
      completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
          if (error == nil) {
-             UIImage *image = [UIImage imageWithData:data scale:screenScale];
+#if TARGET_OS_MAC
+             PLKImage *image = [[PLKImage alloc] initWithData:data];
+#else
+             PLKImage *image = [PLKImage imageWithData:data scale:screenScale];
+#endif
              completionBlock(image);
          }
          else{
@@ -116,7 +124,7 @@ NSString * const kPLKPlaceRandomDowneyImageURLString = @"http://rdjpg.com/%1.0f/
                                ofLength:(PLKTextParagraphLength)paragraphLength
                                 options:(PLKTextOptions)options
                              completion:(void(^)(NSString *placeText))completionBlock{
-    NSAssert1(numberOfParagraphs > 0, @"Number of paragraphs is invalid (%i)", numberOfParagraphs);
+    NSAssert1(numberOfParagraphs > 0, @"Number of paragraphs is invalid (%zd)", numberOfParagraphs);
     
     NSString *urlString = kPLKPlaceRandomTextURLString;
     
@@ -132,7 +140,7 @@ NSString * const kPLKPlaceRandomDowneyImageURLString = @"http://rdjpg.com/%1.0f/
     urlString = [urlString stringByAppendingPathComponent:@"plaintext"];
     urlString = [urlString stringByAppendingPathComponent:paragraphLengthParameter];
     
-    NSString *paragraphsArg = [NSString stringWithFormat:@"%i", numberOfParagraphs];
+    NSString *paragraphsArg = [NSString stringWithFormat:@"%zd", numberOfParagraphs];
     
     urlString = [urlString stringByAppendingPathComponent:paragraphsArg];
     
@@ -156,7 +164,7 @@ NSString * const kPLKPlaceRandomDowneyImageURLString = @"http://rdjpg.com/%1.0f/
                                     shotOfLatin:(BOOL)shotOfLatin
                                      completion:(void(^)(NSString *hipsterIpsum))completionBlock{
     NSMutableString *hipsterPath = [@"http://hipsterjesus.com/api?" mutableCopy];
-    [hipsterPath appendFormat:@"paras=%i",numberOfParagraphs];
+    [hipsterPath appendFormat:@"paras=%zd",numberOfParagraphs];
     [hipsterPath appendString:@"&html=false"];
     
     if (shotOfLatin) {
@@ -292,12 +300,12 @@ NSString * const kPLKPlaceRandomDowneyImageURLString = @"http://rdjpg.com/%1.0f/
     if (__seedFirstNames == nil) {
         __seedFirstNames = [[self maleFirstNames] arrayByAddingObjectsFromArray:[self femaleFirstNames]];
     }
-    return __seedFirstNames[arc4random_uniform(__seedFirstNames.count)];
+    return __seedFirstNames[arc4random_uniform((u_int32_t)__seedFirstNames.count)];
 }
 
 + (NSString *)placeRandomLastName{
     NSArray *seedLastNames = [self lastNames];
-    return seedLastNames[arc4random_uniform(seedLastNames.count)];
+    return seedLastNames[arc4random_uniform((u_int32_t)seedLastNames.count)];
 }
 
 + (NSString *)placeRandomFullName{
@@ -383,15 +391,15 @@ NSString * const kPLKPlaceRandomDowneyImageURLString = @"http://rdjpg.com/%1.0f/
 }
 
 + (NSInteger)placeRandomIntegerLessThan:(NSInteger)lessThan{
-    return arc4random_uniform(lessThan);
+    return arc4random_uniform((u_int32_t)lessThan);
 }
 
 + (CGFloat)placeRandomFloatLessThan:(NSInteger)lessThan{
-    return ((CGFloat)arc4random_uniform(lessThan))+[self placeRandomPercentage];
+    return ((CGFloat)arc4random_uniform((u_int32_t)lessThan))+[self placeRandomPercentage];
 }
 
 + (CGFloat)placeRandomFloatInRange:(NSRange)range{
-    return range.location + arc4random_uniform(range.length) + [self placeRandomPercentage];
+    return range.location + arc4random_uniform((u_int32_t)range.length) + [self placeRandomPercentage];
 }
 
 + (CGFloat)placeRandomPercentage{
@@ -399,7 +407,7 @@ NSString * const kPLKPlaceRandomDowneyImageURLString = @"http://rdjpg.com/%1.0f/
 }
 
 + (CGFloat)placeRandomPercentageInRange:(NSRange)range{
-    return (range.location+arc4random_uniform(range.length))/100.f;
+    return (range.location+arc4random_uniform((u_int32_t)range.length))/100.f;
 }
 
 #pragma mark - Geometry
@@ -444,54 +452,54 @@ NSString * const kPLKPlaceRandomDowneyImageURLString = @"http://rdjpg.com/%1.0f/
 }
 
 #pragma mark - Colors
-+ (UIColor *)placeRandomColorWithHue:(CGFloat)hue{
++ (PLKColor *)placeRandomColorWithHue:(CGFloat)hue{
     NSParameterAssert((hue <= 1) && (hue >= 0));
     
     CGFloat s = [self placeRandomPercentageInRange:NSMakeRange(10, 90)];
     CGFloat b = [self placeRandomPercentageInRange:NSMakeRange(10, 90)];
     
-    return [UIColor colorWithHue:hue
+    return [PLKColor colorWithHue:hue
                       saturation:s
                       brightness:b
                            alpha:1.f];
 }
 
-+ (UIColor *)placeRandomColor{
++ (PLKColor *)placeRandomColor{
     return [self placeRandomColorWithAlpha:1.f];
 }
 
-+ (UIColor *)placeRandomColorWithAlpha:(CGFloat)alpha{
++ (PLKColor *)placeRandomColorWithAlpha:(CGFloat)alpha{
     CGFloat r = [self placeRandomPercentage];
     CGFloat g = [self placeRandomPercentage];
     CGFloat b = [self placeRandomPercentage];
     
-    return [UIColor colorWithRed:r
+    return [PLKColor colorWithRed:r
                            green:g
                             blue:b
                            alpha:1.f];
 }
 
-+ (UIColor *)placeRandomColorWithRandomAlpha{
++ (PLKColor *)placeRandomColorWithRandomAlpha{
     CGFloat alpha = MAX([self placeRandomPercentage], 0.1f);
     return [self placeRandomColorWithAlpha:alpha];
 }
 
-+ (UIColor *)placeRandomGreyscaleColor{
++ (PLKColor *)placeRandomGreyscaleColor{
     return [self placeRandomGreyscaleColorWithAlpha:1.f];
 }
 
-+ (UIColor *)placeRandomGreyscaleColorWithAlpha:(CGFloat)alpha{
++ (PLKColor *)placeRandomGreyscaleColorWithAlpha:(CGFloat)alpha{
     CGFloat greyNess = MIN(MAX([self placeRandomPercentage],0.1f),0.95);
-    return [UIColor colorWithWhite:greyNess
+    return [PLKColor colorWithWhite:greyNess
                              alpha:alpha];
 }
 
-+ (UIColor *)placeRandomGreyscaleColorWithRandomAlpha{
++ (PLKColor *)placeRandomGreyscaleColorWithRandomAlpha{
     CGFloat alpha = MAX([self placeRandomPercentage],0.1f);
     return [self placeRandomGreyscaleColorWithAlpha:alpha];
 }
 
-+ (UIColor *)placeRandomColorWithHueOfColor:(UIColor *)color{
++ (PLKColor *)placeRandomColorWithHueOfColor:(PLKColor *)color{
     CGFloat hue;
     [color getHue:&hue
        saturation:nil

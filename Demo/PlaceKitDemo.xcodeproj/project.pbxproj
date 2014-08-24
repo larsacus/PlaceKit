@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4613549919A9A1B600CDF570 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4613549819A9A1B600CDF570 /* Cocoa.framework */; };
+		461354A319A9A1B600CDF570 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 461354A119A9A1B600CDF570 /* InfoPlist.strings */; };
+		461354A519A9A1B600CDF570 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 461354A419A9A1B600CDF570 /* main.m */; };
+		461354A919A9A1B700CDF570 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 461354A719A9A1B700CDF570 /* Credits.rtf */; };
+		461354AC19A9A1B700CDF570 /* PLKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 461354AB19A9A1B700CDF570 /* PLKAppDelegate.m */; };
+		461354AF19A9A1B700CDF570 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 461354AD19A9A1B700CDF570 /* MainMenu.xib */; };
+		461354B119A9A1B700CDF570 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 461354B019A9A1B700CDF570 /* Images.xcassets */; };
+		461354B819A9A1B700CDF570 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 461354B719A9A1B700CDF570 /* XCTest.framework */; };
+		461354B919A9A1B700CDF570 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4613549819A9A1B600CDF570 /* Cocoa.framework */; };
+		461354C119A9A1B700CDF570 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 461354BF19A9A1B700CDF570 /* InfoPlist.strings */; };
+		461354C319A9A1B700CDF570 /* PlaceKitMacTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 461354C219A9A1B700CDF570 /* PlaceKitMacTests.m */; };
+		461354CA19A9A1C600CDF570 /* PlaceKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A3F048173723D40026173B /* PlaceKit.m */; };
 		46A3F01617370D9D0026173B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46A3F01517370D9D0026173B /* UIKit.framework */; };
 		46A3F01817370D9D0026173B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46A3F01717370D9D0026173B /* Foundation.framework */; };
 		46A3F01A17370D9D0026173B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46A3F01917370D9D0026173B /* CoreGraphics.framework */; };
@@ -31,7 +43,36 @@
 		EB38EC4AB1944827B630E2D3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBED5D1803347D38E067F06 /* libPods.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		461354BA19A9A1B700CDF570 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46A3F00A17370D9C0026173B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4613549619A9A1B600CDF570;
+			remoteInfo = PlaceKitMac;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		4613549719A9A1B600CDF570 /* PlaceKitMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlaceKitMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4613549819A9A1B600CDF570 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		4613549B19A9A1B600CDF570 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		4613549C19A9A1B600CDF570 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		4613549D19A9A1B600CDF570 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		461354A019A9A1B600CDF570 /* PlaceKitMac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlaceKitMac-Info.plist"; sourceTree = "<group>"; };
+		461354A219A9A1B600CDF570 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		461354A419A9A1B600CDF570 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		461354A619A9A1B700CDF570 /* PlaceKitMac-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlaceKitMac-Prefix.pch"; sourceTree = "<group>"; };
+		461354A819A9A1B700CDF570 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		461354AA19A9A1B700CDF570 /* PLKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLKAppDelegate.h; sourceTree = "<group>"; };
+		461354AB19A9A1B700CDF570 /* PLKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLKAppDelegate.m; sourceTree = "<group>"; };
+		461354AE19A9A1B700CDF570 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		461354B019A9A1B700CDF570 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		461354B619A9A1B700CDF570 /* PlaceKitMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlaceKitMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		461354B719A9A1B700CDF570 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		461354BE19A9A1B700CDF570 /* PlaceKitMacTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlaceKitMacTests-Info.plist"; sourceTree = "<group>"; };
+		461354C019A9A1B700CDF570 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		461354C219A9A1B700CDF570 /* PlaceKitMacTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaceKitMacTests.m; sourceTree = "<group>"; };
 		46A3F01217370D9D0026173B /* PlaceKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlaceKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46A3F01517370D9D0026173B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		46A3F01717370D9D0026173B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -67,6 +108,23 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4613549419A9A1B600CDF570 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4613549919A9A1B600CDF570 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		461354B319A9A1B700CDF570 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				461354B919A9A1B700CDF570 /* Cocoa.framework in Frameworks */,
+				461354B819A9A1B700CDF570 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		46A3F00F17370D9C0026173B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -81,11 +139,65 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4613549A19A9A1B600CDF570 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4613549B19A9A1B600CDF570 /* AppKit.framework */,
+				4613549C19A9A1B600CDF570 /* CoreData.framework */,
+				4613549D19A9A1B600CDF570 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		4613549E19A9A1B600CDF570 /* PlaceKitMac */ = {
+			isa = PBXGroup;
+			children = (
+				461354AA19A9A1B700CDF570 /* PLKAppDelegate.h */,
+				461354AB19A9A1B700CDF570 /* PLKAppDelegate.m */,
+				461354AD19A9A1B700CDF570 /* MainMenu.xib */,
+				461354B019A9A1B700CDF570 /* Images.xcassets */,
+				4613549F19A9A1B600CDF570 /* Supporting Files */,
+			);
+			path = PlaceKitMac;
+			sourceTree = "<group>";
+		};
+		4613549F19A9A1B600CDF570 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				461354A019A9A1B600CDF570 /* PlaceKitMac-Info.plist */,
+				461354A119A9A1B600CDF570 /* InfoPlist.strings */,
+				461354A419A9A1B600CDF570 /* main.m */,
+				461354A619A9A1B700CDF570 /* PlaceKitMac-Prefix.pch */,
+				461354A719A9A1B700CDF570 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		461354BC19A9A1B700CDF570 /* PlaceKitMacTests */ = {
+			isa = PBXGroup;
+			children = (
+				461354C219A9A1B700CDF570 /* PlaceKitMacTests.m */,
+				461354BD19A9A1B700CDF570 /* Supporting Files */,
+			);
+			path = PlaceKitMacTests;
+			sourceTree = "<group>";
+		};
+		461354BD19A9A1B700CDF570 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				461354BE19A9A1B700CDF570 /* PlaceKitMacTests-Info.plist */,
+				461354BF19A9A1B700CDF570 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		46A3F00917370D9C0026173B = {
 			isa = PBXGroup;
 			children = (
 				46A3F046173723B70026173B /* PlaceKit */,
 				46A3F01B17370D9D0026173B /* PlaceKitDemo */,
+				4613549E19A9A1B600CDF570 /* PlaceKitMac */,
+				461354BC19A9A1B700CDF570 /* PlaceKitMacTests */,
 				46A3F01417370D9D0026173B /* Frameworks */,
 				46A3F01317370D9D0026173B /* Products */,
 				9821DE1D0A3A4192A7202834 /* Pods.xcconfig */,
@@ -96,6 +208,8 @@
 			isa = PBXGroup;
 			children = (
 				46A3F01217370D9D0026173B /* PlaceKitDemo.app */,
+				4613549719A9A1B600CDF570 /* PlaceKitMac.app */,
+				461354B619A9A1B700CDF570 /* PlaceKitMacTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -107,6 +221,9 @@
 				46A3F01717370D9D0026173B /* Foundation.framework */,
 				46A3F01917370D9D0026173B /* CoreGraphics.framework */,
 				EEBED5D1803347D38E067F06 /* libPods.a */,
+				4613549819A9A1B600CDF570 /* Cocoa.framework */,
+				461354B719A9A1B700CDF570 /* XCTest.framework */,
+				4613549A19A9A1B600CDF570 /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -163,6 +280,41 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4613549619A9A1B600CDF570 /* PlaceKitMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 461354C819A9A1B700CDF570 /* Build configuration list for PBXNativeTarget "PlaceKitMac" */;
+			buildPhases = (
+				4613549319A9A1B600CDF570 /* Sources */,
+				4613549419A9A1B600CDF570 /* Frameworks */,
+				4613549519A9A1B600CDF570 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PlaceKitMac;
+			productName = PlaceKitMac;
+			productReference = 4613549719A9A1B600CDF570 /* PlaceKitMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		461354B519A9A1B700CDF570 /* PlaceKitMacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 461354C919A9A1B700CDF570 /* Build configuration list for PBXNativeTarget "PlaceKitMacTests" */;
+			buildPhases = (
+				461354B219A9A1B700CDF570 /* Sources */,
+				461354B319A9A1B700CDF570 /* Frameworks */,
+				461354B419A9A1B700CDF570 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				461354BB19A9A1B700CDF570 /* PBXTargetDependency */,
+			);
+			name = PlaceKitMacTests;
+			productName = PlaceKitMacTests;
+			productReference = 461354B619A9A1B700CDF570 /* PlaceKitMacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		46A3F01117370D9C0026173B /* PlaceKitDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 46A3F04317370D9D0026173B /* Build configuration list for PBXNativeTarget "PlaceKitDemo" */;
@@ -191,6 +343,11 @@
 				CLASSPREFIX = PLK;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = theonlylars;
+				TargetAttributes = {
+					461354B519A9A1B700CDF570 = {
+						TestTargetID = 46A3F01117370D9C0026173B;
+					};
+				};
 			};
 			buildConfigurationList = 46A3F00D17370D9C0026173B /* Build configuration list for PBXProject "PlaceKitDemo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -198,6 +355,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 46A3F00917370D9C0026173B;
 			productRefGroup = 46A3F01317370D9D0026173B /* Products */;
@@ -205,11 +363,32 @@
 			projectRoot = "";
 			targets = (
 				46A3F01117370D9C0026173B /* PlaceKitDemo */,
+				4613549619A9A1B600CDF570 /* PlaceKitMac */,
+				461354B519A9A1B700CDF570 /* PlaceKitMacTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4613549519A9A1B600CDF570 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				461354A319A9A1B600CDF570 /* InfoPlist.strings in Resources */,
+				461354B119A9A1B700CDF570 /* Images.xcassets in Resources */,
+				461354A919A9A1B700CDF570 /* Credits.rtf in Resources */,
+				461354AF19A9A1B700CDF570 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		461354B419A9A1B700CDF570 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				461354C119A9A1B700CDF570 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		46A3F01017370D9C0026173B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -262,6 +441,24 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4613549319A9A1B600CDF570 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				461354AC19A9A1B700CDF570 /* PLKAppDelegate.m in Sources */,
+				461354A519A9A1B600CDF570 /* main.m in Sources */,
+				461354CA19A9A1C600CDF570 /* PlaceKit.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		461354B219A9A1B700CDF570 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				461354C319A9A1B700CDF570 /* PlaceKitMacTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		46A3F00E17370D9C0026173B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -278,7 +475,47 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		461354BB19A9A1B700CDF570 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4613549619A9A1B600CDF570 /* PlaceKitMac */;
+			targetProxy = 461354BA19A9A1B700CDF570 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		461354A119A9A1B600CDF570 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				461354A219A9A1B600CDF570 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		461354A719A9A1B700CDF570 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				461354A819A9A1B700CDF570 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		461354AD19A9A1B700CDF570 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				461354AE19A9A1B700CDF570 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		461354BF19A9A1B700CDF570 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				461354C019A9A1B700CDF570 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		46A3F01E17370D9D0026173B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -306,6 +543,136 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		461354C419A9A1B700CDF570 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PlaceKitMac/PlaceKitMac-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "PlaceKitMac/PlaceKitMac-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		461354C519A9A1B700CDF570 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PlaceKitMac/PlaceKitMac-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "PlaceKitMac/PlaceKitMac-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		461354C619A9A1B700CDF570 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PlaceKitDemo.app/PlaceKitDemo";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PlaceKitMac/PlaceKitMac-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "PlaceKitMacTests/PlaceKitMacTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		461354C719A9A1B700CDF570 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PlaceKitDemo.app/PlaceKitDemo";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PlaceKitMac/PlaceKitMac-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "PlaceKitMacTests/PlaceKitMacTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		46A3F04117370D9D0026173B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -399,6 +766,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		461354C819A9A1B700CDF570 /* Build configuration list for PBXNativeTarget "PlaceKitMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				461354C419A9A1B700CDF570 /* Debug */,
+				461354C519A9A1B700CDF570 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		461354C919A9A1B700CDF570 /* Build configuration list for PBXNativeTarget "PlaceKitMacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				461354C619A9A1B700CDF570 /* Debug */,
+				461354C719A9A1B700CDF570 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		46A3F00D17370D9C0026173B /* Build configuration list for PBXProject "PlaceKitDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
