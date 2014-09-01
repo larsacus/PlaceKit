@@ -47,12 +47,12 @@ extern NSString * const kPLKPlaceRandomGreyscaleImageURLString;
 extern NSString * const kPLKPlaceRandomDowneyImageURLString;
 
 #ifndef PLKImage
-#if TARGET_OS_MAC
-#define PLKImage NSImage
-#define PLKColor NSColor
-#else
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 #define PLKImage UIImage
 #define PLKColor UIColor
+#else
+#define PLKImage NSImage
+#define PLKColor NSColor
 #endif
 #endif //ifndef PLKImage
 
