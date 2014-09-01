@@ -58,6 +58,8 @@ extern NSString * const kPLKPlaceRandomDowneyImageURLString;
 
 @interface PlaceKit : NSObject
 
+#pragma mark - Images
+
 //------–----------------
 /** Placeholder Images */
 //------–----------------
@@ -132,6 +134,8 @@ extern NSString * const kPLKPlaceRandomDowneyImageURLString;
 + (void)placeDowneyImageWithSize:(CGSize)size
                       completion:(void(^)(PLKImage *downey))completionBlock;
 
+#pragma mark - Text
+
 //------–------------------
 /** @name Placeholder text */
 //------–------------------
@@ -182,6 +186,8 @@ extern NSString * const kPLKPlaceRandomDowneyImageURLString;
                          paragraphLength:(PLKTextParagraphLength)paragraphLength
                                  options:(PLKHTMLOptions)htmlOptions;
 
+#pragma mark - Fake Data
+
 //------–-------------------
 /** @name Placeholder data */
 //------–-------------------
@@ -201,6 +207,8 @@ extern NSString * const kPLKPlaceRandomDowneyImageURLString;
 /** Place a random business name with a given word count
  */
 + (NSString *)placeRandomBusinessNameWithNumberOfWords:(NSUInteger)words;
+
+#pragma mark - Numbers
 
 //------–------------------
 /** @name Random numbers */
@@ -241,6 +249,8 @@ extern NSString * const kPLKPlaceRandomDowneyImageURLString;
  */
 + (CGFloat)placeRandomPercentageInRange:(NSRange)range;
 
+#pragma mark - Geometry
+
 //------–-----------
 /** @name Geometry */
 //------–-----------
@@ -270,6 +280,8 @@ extern NSString * const kPLKPlaceRandomDowneyImageURLString;
  @param rect A rect to bound the randomly generated point within
  */
 + (CGPoint)placeRandomPointWithinRect:(CGRect)rect;
+
+#pragma mark - Colors
 
 //-----------------
 /** @name Colors */
