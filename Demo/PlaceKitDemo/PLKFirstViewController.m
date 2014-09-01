@@ -8,8 +8,8 @@
 
 #import "PLKFirstViewController.h"
 #import "PLKCollectionViewImageCell.h"
-#import "PlaceKit.h"
-#import "UIImageView+PlaceKit.h"
+#import <PlaceKit/PlaceKit.h>
+#import <PlaceKit/UIImageView+PlaceKit.h>
 
 @interface PLKFirstViewController ()
 

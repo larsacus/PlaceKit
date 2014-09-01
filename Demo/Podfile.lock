@@ -1,10 +1,20 @@
 PODS:
   - AFNetworking (1.3.4)
+  - PlaceKit/Core (1.1.0)
+  - PlaceKit/ImageView (1.1.0):
+    - AFNetworking (~> 1.0)
+    - PlaceKit/Core
 
 DEPENDENCIES:
   - AFNetworking (~> 1.2)
+  - PlaceKit/ImageView (from `..`)
+
+EXTERNAL SOURCES:
+  PlaceKit:
+    :path: ..
 
 SPEC CHECKSUMS:
   AFNetworking: 80c4e0652b08eb34e25b9c0ff3c82556fe5967b4
+  PlaceKit: 1188300288d012961fcc3bdc59ac68f840330d59
 
 COCOAPODS: 0.33.1

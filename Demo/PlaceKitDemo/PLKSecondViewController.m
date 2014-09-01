@@ -7,7 +7,7 @@
 //
 
 #import "PLKSecondViewController.h"
-#import "PlaceKit.h"
+#import <PlaceKit/PlaceKit.h>
 
 @interface PLKSecondViewController ()
 
