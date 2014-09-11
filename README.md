@@ -5,6 +5,8 @@ Placeholders, lorem ipsum, and fake data oh my!
 
 For all of your early-development, sandbox and proto work. PlaceKit is an easy-to-use framework for adding content when you either have none or don't care what it is during the early phases of development.
 
+Prefer the Swift version? We've got you covered with [Wallpaper](https://github.com/enmiller/Wallpaper).
+
 ##Content
 ###Placeholder Content
 
@@ -65,4 +67,3 @@ Standard MIT license
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/larsacus/placekit/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
