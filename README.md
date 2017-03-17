@@ -7,8 +7,8 @@ For all of your early-development, sandbox and proto work. PlaceKit is an easy-t
 
 Prefer the Swift version? We've got you covered with [Wallpaper](https://github.com/enmiller/Wallpaper).
 
-##Content
-###Placeholder Content
+## Content
+### Placeholder Content
 
 Nothing motivates a designer more than seeing random meat-based assets on an app they have to work with.
 
@@ -27,7 +27,7 @@ Nothing motivates a designer more than seeing random meat-based assets on an app
     - Phone numbers
     - Random numbers
 
-###Random Geometry & Numbers
+### Random Geometry & Numbers
 
 Easily generate views with random frames within another view, pick a random point within a given rect or generate random numbers and percentages:
 
@@ -38,7 +38,7 @@ Easily generate views with random frames within another view, pick a random poin
 - Random percentages
 - Random numbers in range
 
-###Random Colors
+### Random Colors
 
 Create new colors to give you bland UI some dimension, give new views a random color to tell them apart or generate a new random color matching the hue of another:
 
@@ -48,22 +48,19 @@ Create new colors to give you bland UI some dimension, give new views a random c
 - Random greyscale color
 - More
 
-##Installation
-###CocoaPods
+## Installation
+### CocoaPods
 The easiest way to use PlaceKit is using CocoaPods: `pod 'PlaceKit'`
 
 If you would like to use the `UIImageView` categories for the placeholder images, you will need to use the 'ImageView' subspec: `pod 'PlaceKit/ImageView'`. This will install the AFNetworking as a dependency in order to use `UIImageView+AFNetworking`.
 
-###Standalone
+### Standalone
 The PlaceKit core was built dependency-free to make it as easy as possible to drop into your project. Simply drop `PlaceKit.{h,m}` into your project and import as necessary! If you would like to use the `UIImageView` category, you will also need to integrate AFNetworking into your project.
 
-##Known Issues
+## Known Issues
 
 1. PlaceKit's demo application needs some work
 2. Random business names API is still a work-in-progress and could use some more work
 
-##License
+## License
 Standard MIT license
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/larsacus/placekit/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
